@@ -2,18 +2,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './NavBar.css'; // Importing the CSS file for styling
+import "https://kit.fontawesome.com/0e53af926d.js" //TODO: Check if change. This is for logo(fa fa-bag-shopping)
 
 function NavBar() {
     return (
-        <nav className="navbar">
-            <Link to="/" className='site-title'> Wellness Hub Application</Link>
-            <ul className="nav-list">
-                <li className="nav-item"><Link to="/">Home</Link></li>
-                <li className="nav-item"><Link to="/about">About</Link></li>
-                <li className="nav-item"><Link to="#">Services</Link></li>
-                <li className="nav-item"><Link to="/signup">Signup</Link></li>
-            </ul>
-        </nav>
+        <header>
+            <div id="header">
+                <nav className="header-list-nav">
+                    <div className="header-logo">
+                        <Link to="/"><img src="src\assets\logo.png" height="50px" alt="" /></Link>
+                    </div>
+
+                    <ul>
+                        <li><Link to="/" className="active">Home</Link></li>
+                        <li><Link to="Signup">Signup</Link></li>
+                        <li><Link to="blog.html">Blog</Link></li>
+                        <li><Link to="about">About</Link></li>
+                        <li><Link to="contact.html">Contact Us</Link></li>
+                    </ul>
+                </nav>
+                <div className="header-list-icon">
+                    <Link to=""><i className="fa fa-bag-shopping"></i></Link>
+                </div>
+            </div>
+        </header>
     );
 }
 

@@ -1,3 +1,5 @@
+import NavBar from "../layouts/NavBar";
+
 
 function Signup() {
 
