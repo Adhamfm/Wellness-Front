@@ -31,7 +31,7 @@ function Login() {
 					*Email* is mandatory </span>}
 				<input type="password" {...register("password")} placeholder="password" required />
 				<a href="Home"><button type="submit">Login</button></a>
-                <p >You don't have account? <a href="Login">Login</a></p>
+                <p >You don't have account? <a href="Signup">Signup</a></p>
 			</form>
 		</>
 	);
