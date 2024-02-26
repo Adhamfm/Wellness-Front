@@ -16,6 +16,7 @@ function NavBar() {
                     <ul>
                         <li><Link to="/" className="active">Home</Link></li>
                         <li><Link to="Signup">Signup</Link></li>
+                        <li><Link to="Login">Login</Link></li>
                         <li><Link to="blog.html">Blog</Link></li>
                         <li><Link to="about">About</Link></li>
                         <li><Link to="contact.html">Contact Us</Link></li>
