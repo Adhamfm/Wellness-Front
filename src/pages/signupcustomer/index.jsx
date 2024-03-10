@@ -13,6 +13,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider, alpha, getContrastRatio } from '@mui/material/styles';
+import NavBar from '../../components/layout/NavBar/NavBar';
 
 
 const violetBase = '#0b0b0b';
@@ -43,6 +44,9 @@ export default function Login() {
   };
 
   return (
+
+    <>
+    <NavBar/>
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -110,5 +114,7 @@ export default function Login() {
         </Box>
       </Container>
     </ThemeProvider>
+    </>
+
   );
 }

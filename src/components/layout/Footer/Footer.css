@@ -4,7 +4,7 @@
     padding: 70px 0;
     text-transform: capitalize;
     bottom: 0;
-    position: absolute;
+    /* position: absolute; */
     width: 100vw;
     /* margin-top: 40px; */
 }

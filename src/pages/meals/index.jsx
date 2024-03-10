@@ -4,6 +4,7 @@ import MealCard from "../../components/mealCard";
 
 import { CircularProgress, Grid } from "@mui/material";
 import axios from "axios";
+import Footer from "../../components/layout/Footer/Footer";
 
 
 
@@ -47,6 +48,7 @@ export default function Meals() {
                         <MealCard data={meal} />
                     </Grid>)}
             </Grid>
+            <Footer/>
         </>
     )
 }

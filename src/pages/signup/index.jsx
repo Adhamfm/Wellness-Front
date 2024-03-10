@@ -21,6 +21,7 @@ import SignUpValidationForm from '../../components/validation/SignUpValidationSc
 import * as yup from "yup";
 import axios from 'axios';
 import { Alert, CircularProgress } from '@mui/material';
+import NavBar from '../../components/layout/NavBar/NavBar';
 
 // function Copyright(props) { TODO:CHECK TYPOGRAPHY
 //   return (
@@ -102,6 +103,8 @@ export default function Signup() {
 
   return (
 
+    <>
+    <NavBar/>
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
@@ -262,5 +265,7 @@ export default function Signup() {
         </Box>
       </Box>
     </Container>
+    </>
+
   )
 }

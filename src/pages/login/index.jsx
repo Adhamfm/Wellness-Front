@@ -16,6 +16,7 @@ import { Alert, CircularProgress } from '@mui/material';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import Cookies from 'js-cookie';
+import NavBar from '../../components/layout/NavBar/NavBar';
 
 const loginInfo = {
   email: "",
@@ -63,6 +64,8 @@ export default function LoginCustomer() {
   };
 
   return (
+    <>
+    <NavBar/>
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
@@ -148,5 +151,7 @@ export default function LoginCustomer() {
         </Box>
       </Box>
     </Container>
+    </>
+
   );
 }

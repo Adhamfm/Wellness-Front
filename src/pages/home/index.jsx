@@ -52,7 +52,7 @@ export default function Home() {
       <Button onClick={updateUserData} variant="contained"> GET USER DATA </Button>
       <p>{userData.name}</p> */}
       
-      {/* <Footer /> */}
+      <Footer />
     </div>
   )
 }

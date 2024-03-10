@@ -13,6 +13,8 @@ import NavBar from './components/layout/NavBar/NavBar';
 import LoginCustomer from './pages/login';
 import TabsTest from './pages/tabsTest';
 import LoginSeller from './pages/loginSeller';
+import Footer from './components/layout/Footer/Footer';
+
 
 function App() {
 

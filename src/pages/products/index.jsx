@@ -3,6 +3,7 @@ import ProductCard from '../../components/productCard'
 import { Button, CircularProgress, Grid } from '@mui/material'
 import NavBar from '../../components/layout/NavBar/NavBar'
 import axios from 'axios'
+import Footer from '../../components/layout/Footer/Footer'
 
 
 
@@ -58,6 +59,7 @@ export default function Products() {
                         <ProductCard data={product}/>
                     </Grid>)}
             </Grid>
+            <Footer/>
         </>
     )
 }
