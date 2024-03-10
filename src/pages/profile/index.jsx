@@ -5,7 +5,7 @@ import axios from 'axios'
 import ProductCard from '../../components/productCard'
 import MealCard from '../../components/mealCard'
 import ProductSection from '../../components/profile/productSection'
-
+import "./style.css"
 
 
 // const test = {
@@ -75,10 +75,16 @@ export default function profile() {
   return (
     <>
       <NavBar />
-      <h1>profile</h1>
+      <div className="profile_banner">
+      <h1>welcome {sellerData.name}</h1>
       {/* <Button onClick={getSellerData} variant="contained"> GET DATA </Button> */}
       {sellerLoading && <div className="loading_text"><Grid item xs={12}> <CircularProgress color="inherit" /></Grid></div>}
-      <h2>{sellerData.name}</h2>
+      <h2>Email:{sellerData.email}</h2>
+      <h2>Phone Number:{sellerData.phone.number}</h2>
+      <h2> Bio: </h2>
+      <h2> Rating </h2>
+      </div>
+
       <h3>MY MEALS</h3>
       {mealsLoading && <div className="loading_text"><Grid item xs={12}> <CircularProgress color="inherit" /></Grid></div>}
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}
