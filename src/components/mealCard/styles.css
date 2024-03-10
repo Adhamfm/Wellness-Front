@@ -1,0 +1,58 @@
+.meal-cart {
+    width: 280px;
+    border: 1px solid #ebebeb;
+    padding: 13px;
+    margin-bottom: 30px;
+    border-radius: 25px;
+    position: relative;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s;
+}
+
+.meal-cart:hover {
+    /* box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.06); */
+    transform-style: preserve-3d;
+    transform: scale(1.02);
+}
+
+.meal-cart img {
+    width: 100%;
+    border-radius: 25px;
+}
+
+.meal-cart span {
+    color: #969696;
+    font-weight: 500;
+    line-height: 30px;
+}
+
+.meal-cart h4 {
+    font-size: 18px;
+    color: rgb(41, 41, 41);
+}
+
+.meal-cart .specific {
+    color: #000000;
+}
+
+.meal-cart .price {
+    color: #088178;
+    padding: 4px 0;
+    line-height: 30px;
+}
+
+.meal-cart .buy-icon {
+    color: #088178;
+    background-color: #c7e9e75e;
+    padding: 15px;
+    border-radius: 50px;
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    transition: 0.3s ease;
+}
+
+.meal-cart .buy-icon:hover {
+    color: white;
+    background-color: #088178;
+}

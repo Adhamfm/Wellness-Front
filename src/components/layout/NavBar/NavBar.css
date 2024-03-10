@@ -1,0 +1,79 @@
+/* @import url("../../../assets/global.css"); */
+
+
+/* header styles */
+
+
+/* #header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+    justify-content: space-between;
+    background-color: #000000;
+    padding: 20px 7%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: auto;
+}  */
+
+#header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+    justify-content: space-between;
+    background-color: #000000;
+    padding: 20px 7%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    margin-bottom: auto;
+    z-index: 1;
+}
+
+.header-list-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-list-nav ul {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 40px;
+}
+
+.header-list-nav ul li {
+    list-style-type: none;
+    padding: 0 20px;
+    position: relative;
+}
+
+.header-list-nav ul a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+    transition: 0.3s ease;
+}
+
+.header-list-nav ul a:hover,
+.header-list-nav ul a:active,
+.header-list-icon a:hover {
+    color: #088178;
+    /* content: ""; */
+}
+
+.header-list-icon a {
+    color: #f9f9f9;
+    padding-left: 20px;
+    transition: 0.3s ease;
+}
