@@ -6,6 +6,7 @@ import ProductCard from '../../components/productCard'
 import MealCard from '../../components/mealCard'
 import ProductSection from '../../components/profile/productSection'
 import "./style.css"
+import Footer from '../../components/layout/Footer/Footer'
 
 
 // const test = {
@@ -75,14 +76,14 @@ export default function profile() {
   return (
     <>
       <NavBar />
-      <div className="profile_banner">
-      <h1>welcome {sellerData.name}</h1>
-      {/* <Button onClick={getSellerData} variant="contained"> GET DATA </Button> */}
-      {sellerLoading && <div className="loading_text"><Grid item xs={12}> <CircularProgress color="inherit" /></Grid></div>}
-      <h2>Email:{sellerData.email}</h2>
-      <h2>Phone Number:{sellerData.phone.number}</h2>
-      <h2> Bio: </h2>
-      <h2> Rating </h2>
+        <div className="profile_banner">
+        <h1>welcome, {sellerData.name}</h1>
+        {/* <Button onClick={getSellerData} variant="contained"> GET DATA </Button> */}
+        {sellerLoading && <div className="loading_text"><Grid item xs={12}> <CircularProgress color="inherit" /></Grid></div>}
+        <h2>Email:{sellerData.email}</h2>
+        <h2>Phone Number:{sellerData.phone.number}</h2>
+        <h2> Bio: </h2>
+        <h2> Rating </h2>
       </div>
 
       <h3>MY MEALS</h3>
@@ -100,6 +101,8 @@ export default function profile() {
       <br /><br />
       <h3>MY PRODUCTS</h3>
       <ProductSection sellerData={sellerData}/>
+      <br /><br />
+      <Footer />
     </>
   )
 }
