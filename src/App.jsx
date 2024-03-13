@@ -13,6 +13,7 @@ import NavBar from './components/layout/NavBar/NavBar';
 import LoginCustomer from './pages/login';
 import TabsTest from './pages/tabsTest';
 import LoginSeller from './pages/loginSeller';
+import Wishlist from './pages/Wishlist';
 import Footer from './components/layout/Footer/Footer';
 
 
@@ -34,9 +35,11 @@ function App() {
         <Route path="/meals/:mealid" element={<MealPage/>} exact/>
         <Route path="/tabtest" element={<TabsTest/>} exact/>
         <Route path="*" element={<div><NavBar/><h1>404 PAGE NOT FOUND</h1></div>} exact/>
+        <Route path="/Wishlist" element={<Wishlist/>} exact/>
       </Routes>
     </div>
   );
 }
 
 export default App
+
