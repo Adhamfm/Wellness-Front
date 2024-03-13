@@ -53,7 +53,7 @@ function NavBar() {
                             <li><Link to="/logincustomer">Login Customer</Link></li>
                         </>
                     )}
-                <li><Link to="/Wishlist">Wishlist</Link></li>      
+                <li><Link to="/Wishlist">Wishlist Customer</Link></li>      
                 </ul>
             </nav>
             <div className="header-list-icon">
