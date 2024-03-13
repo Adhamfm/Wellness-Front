@@ -22,7 +22,7 @@ function Wishlist ()  {
       <br></br>
       <br></br>
       <br></br>
-      <h1>WishList</h1> 
+      <h1>WishList Customer</h1> 
       <br></br>
       <br></br>
       <br></br>   
@@ -32,9 +32,9 @@ function Wishlist ()  {
             <p>Item Name: {item.name}</p>
             <img src='https://th.bing.com/th/id/OIP.fn7HURB-a0sY854FLQZXjwHaFi?rs=1&pid=ImgDetMain'></img>
             <p>{item.price}</p>
-            <div4>            
+            {/* <div4>            
             <button onClick={event =>  window.location.href='/products'}>Buy</button>            
-            </div4>
+            </div4> */}
             <button onClick={() => removeItem(item.id)}>
               Cancel
             </button>
