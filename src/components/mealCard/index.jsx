@@ -25,7 +25,7 @@ export default function MealCard(props) {
       <span><span className="specific">{props.data.rate} </span>(630)</span>
     </div>
     <h4 className="price">EGP {props.data.price}</h4>
-    <a href="#"><i className="fa-solid fa-cart-shopping buy-icon"></i></a>
+    <a href="./cart"><i className="fa-solid fa-cart-shopping buy-icon"></i></a>
   </div>
   )
 }
