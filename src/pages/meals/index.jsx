@@ -29,6 +29,8 @@ export default function Meals() {
         getAllMeals()
     }, []);
 
+    
+    //get wishlist items
 
 
 
@@ -40,15 +42,15 @@ export default function Meals() {
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}
                 justifyContent="center">
 
-
                 {loading && <div className="loading_text"><Grid item xs={12}> <CircularProgress color="inherit" /></Grid></div>}
+
 
                 {allMeals.map((meal) =>
                     <Grid item xs="auto" key={meal.id}>
                         <MealCard data={meal} />
                     </Grid>)}
             </Grid>
-            <Footer/>
+            <Footer />
         </>
     )
 }
