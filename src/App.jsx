@@ -13,6 +13,7 @@ import NavBar from './components/layout/NavBar/NavBar';
 import LoginCustomer from './pages/login';
 import TabsTest from './pages/tabsTest';
 import LoginSeller from './pages/loginSeller';
+import Cart from './pages/cart';
 import Footer from './components/layout/Footer/Footer';
 
 
@@ -32,6 +33,7 @@ function App() {
         <Route path="/products/:proid" element={<ProductPage/>} exact/>
         <Route path="/meals" element={<Meals/>} exact/>
         <Route path="/meals/:mealid" element={<MealPage/>} exact/>
+        <Route path="/cart" element={<Cart/>} exact/>
         <Route path="/tabtest" element={<TabsTest/>} exact/>
         <Route path="*" element={<div><NavBar/><h1>404 PAGE NOT FOUND</h1></div>} exact/>
       </Routes>

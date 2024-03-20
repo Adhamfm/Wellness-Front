@@ -59,7 +59,7 @@ function NavBar() {
             <div className="header-list-icon">
                 
                 {isLoggedIn ? (<Button onClick={handleLogout}> LogOut </Button>): (<></>)}
-                <Link to=""><i className="fa fa-bag-shopping"></i></Link>
+                <Link to="/cart"><i className="fa fa-bag-shopping"></i></Link>
             </div>
         </div>
     );

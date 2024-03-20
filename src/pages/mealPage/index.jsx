@@ -19,6 +19,7 @@ export default function MealPage() {
         setIsLoading(false)
       }
     console.log(meal)
+    
     return (
         <>
             <NavBar />
@@ -26,7 +27,9 @@ export default function MealPage() {
             {meal.images ? <img src={meal.images[2]} alt="Meal Image"/> : null}
             <h4>PRICE: {meal.price}</h4>
             <p>DESCRIPTION: {meal.description}</p>
-            
+            <input type="number" value={selectedQuantity} onChange={handleQuantityChange} />
+            <h4>Total:{meal.price * selectedQuantity} EGP</h4>
+            <button className="btn btn-primary">ADD TO CART</button>
         </>
     )
 }

@@ -1,8 +1,7 @@
-import { Link } from 'react-router-dom'
-import './styles.css'
-import React,{ useState , useRef} from 'react'
+import { Link,useNavigate } from 'react-router-dom';
+import React,{ useState , useRef,useEffect} from 'react';
 
-export default function MealCard(props) {
+export default function cartCard(props) {
 
     const data=useRef();
     const handleClick=()=>{
