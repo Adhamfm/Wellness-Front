@@ -7,6 +7,7 @@ import MealCard from '../../components/mealCard'
 import ProductSection from '../../components/profile/productSection'
 import "./style.css"
 import Footer from '../../components/layout/Footer/Footer'
+import { Link } from 'react-router-dom'
 
 
 // const test = {
@@ -77,6 +78,7 @@ export default function profile() {
     <>
       <NavBar />
       <div style={styles.poster}>
+      <Link to="/addMealPage"><Button variant='contained' color='success'>Add Meal</Button></Link>
         <div className="profile_banner">
           <h1>welcome, {sellerData.name}</h1>
           {/* <Button onClick={getSellerData} variant="contained"> GET DATA </Button> */}

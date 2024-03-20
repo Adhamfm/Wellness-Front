@@ -22,10 +22,14 @@ export default function Meals() {
                 console.log("Sending Request")
                 const response1 = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/meals`);
                 const userLocal = JSON.parse(localStorage.getItem('user'))
-                const response2 = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/customer/${userLocal.userId}/wishlist/`,
-                    { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
-                console.log(response2)
-                setWishlist(response2.data)
+                try {
+                    const response2 = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/customer/${userLocal.userId}/wishlist/`,
+                        { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
+                    console.log(response2)
+                    setWishlist(response2.data)
+                } catch (error) {
+                    console.log(error);
+                }
                 setAllMeals(response1.data)
                 setLoading(false)
             } catch (error) {
@@ -35,12 +39,12 @@ export default function Meals() {
         getAllMeals()
     }, []);
 
-    
+
     //get wishlist items
     // useEffect(() => {
     //     const getWishlist = async () => {
     //         try {
-               
+
     //         } catch (error) {
     //             console.log(error);
     //         }
@@ -62,7 +66,7 @@ export default function Meals() {
 
                 {allMeals.map((meal) =>
                     <Grid item xs="auto" key={meal.id}>
-                        <MealCard data={meal} wishlistList ={wishlist}/>
+                        <MealCard data={meal} wishlistList={wishlist} />
                     </Grid>)}
             </Grid>
             <Footer />

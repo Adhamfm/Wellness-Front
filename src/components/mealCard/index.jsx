@@ -4,7 +4,7 @@ import React,{ useState , useRef} from 'react'
 import Wishlist from './wishlist';
 
 export default function MealCard(props) {
-
+    const wishlist = props.wishlistList?.whishlist ?? [];
     const data=useRef();
     const handleClick=()=>{
       console.log(props.data.current.title,"initialValue")
@@ -34,7 +34,7 @@ export default function MealCard(props) {
     </div>
     <h4 className="price">EGP {props.data.price}</h4>
     <a href="#"><i className="fa-solid fa-cart-shopping buy-icon" onClick={handleClick}></i></a>
-    <Wishlist id={props.data.id} wishlistList={props.wishlistList.whishlist}/>
+    <Wishlist id={props.data.id} wishlistList={wishlist}/>
   </div>
   )
 }
