@@ -34,7 +34,6 @@ const styles = {
         marginLeft: "25%",
         marginTop: "50px",
         fontFamily: "Libre Baskerville, serif",
-        // textAlign: "center",
         marginBottom: "100px",
         fontSize: "25px",
     },
