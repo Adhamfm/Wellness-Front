@@ -8,7 +8,7 @@ import { Button } from '@mui/material';
 function NavBar() {
     const navigate = useNavigate()
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    
+
     const handleLogout = () => {
         // Your logout logic here
         localStorage.removeItem('user')
@@ -18,17 +18,19 @@ function NavBar() {
 
     useEffect(() => {
         function checkLoggedIn() {
-          const user = localStorage.getItem('user') !== null
-          {user ? (
-            setIsLoggedIn(true)
-          ) : (
-            setIsLoggedIn(false)
-          )}
+            const user = localStorage.getItem('user') !== null
+            {
+                user ? (
+                    setIsLoggedIn(true)
+                ) : (
+                    setIsLoggedIn(false)
+                )
+            }
         }
-    
+
         checkLoggedIn();
-      }, [isLoggedIn]);
-    
+    }, [isLoggedIn]);
+
 
     return (
         <div id="header">
@@ -47,7 +49,10 @@ function NavBar() {
                         <li><Link to="/Signup">Signup</Link></li>
                         <li><Link to="/logincustomer">Login Customer</Link></li> */}
                     {isLoggedIn ? (
-                        <li><Link to="/profile">Profile</Link></li>
+                        <>
+                            <li><Link to="/profile">Profile</Link></li>
+                            <li><Link to="/wishlist">Wishlist</Link></li>
+                        </>
                     ) : (
                         <>
                             <li><Link to="/Signup">Signup</Link></li>
@@ -57,8 +62,8 @@ function NavBar() {
                 </ul>
             </nav>
             <div className="header-list-icon">
-                
-                {isLoggedIn ? (<Button onClick={handleLogout}> LogOut </Button>): (<></>)}
+
+                {isLoggedIn ? (<Button onClick={handleLogout}> LogOut </Button>) : (<></>)}
                 <Link to="/cart"><i className="fa fa-bag-shopping"></i></Link>
             </div>
         </div>

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import './styles.css'
 import React,{ useState , useRef} from 'react'
+import Wishlist from './wishlist';
 
 export default function MealCard(props) {
 
@@ -33,6 +34,7 @@ export default function MealCard(props) {
     </div>
     <h4 className="price">EGP {props.data.price}</h4>
     <a href="#"><i className="fa-solid fa-cart-shopping buy-icon" onClick={handleClick}></i></a>
+    <Wishlist id={props.data.id}/>
   </div>
   )
 }

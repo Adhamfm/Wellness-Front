@@ -15,6 +15,7 @@ import TabsTest from './pages/tabsTest';
 import LoginSeller from './pages/loginSeller';
 import Cart from './pages/cart';
 import Footer from './components/layout/Footer/Footer';
+import WishlistPage from './pages/wishlist';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path="/test" element={<FormTest/>} exact/>
         <Route path="/signupcus" element={<SignupCustomerForm/>} exact/>
         <Route path="/products" element={<Products/>} exact/>
+        <Route path="/wishlist" element={<WishlistPage/>} exact/>
         <Route path="/products/:proid" element={<ProductPage/>} exact/>
         <Route path="/meals" element={<Meals/>} exact/>
         <Route path="/meals/:mealid" element={<MealPage/>} exact/>
