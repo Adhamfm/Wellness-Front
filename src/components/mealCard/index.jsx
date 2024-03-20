@@ -34,7 +34,7 @@ export default function MealCard(props) {
     </div>
     <h4 className="price">EGP {props.data.price}</h4>
     <a href="#"><i className="fa-solid fa-cart-shopping buy-icon" onClick={handleClick}></i></a>
-    <Wishlist id={props.data.id}/>
+    <Wishlist id={props.data.id} wishlistList={props.wishlistList.whishlist}/>
   </div>
   )
 }

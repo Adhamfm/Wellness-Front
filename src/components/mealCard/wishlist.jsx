@@ -28,20 +28,34 @@ export default function Wishlist(props) {
     const [wishlish, setWishlist] = useState({});
 
     function checkIfMealInWishlist(wishlist, mealId) {
-        return wishlist.some(item => item.type === "meal" && item.id === mealId);
+        try {
+            return wishlist.some(item => item.type === "meal" && item.id === mealId);
+        } catch (error) {
+            console.log(error)
+        }
+        
     }
+    // useEffect(() => {
+    //     const getWishlist = async () => {
+    //         try {
+    //             const userLocal = JSON.parse(localStorage.getItem('user'))
+    //             const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/customer/${userLocal.userId}/wishlist/`,
+    //                 { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
+    //             console.log(response)
+    //             setWishlist(response.data)
+    //             setIsWishlist(!checkIfMealInWishlist(response.data.whishlist,props.id))
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     };
+    //     getWishlist()
+    // }, []);
+    
     useEffect(() => {
-        const getWishlist = async () => {
-            try {
-                const userLocal = JSON.parse(localStorage.getItem('user'))
-                const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/customer/${userLocal.userId}/wishlist/`,
-                    { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
-                console.log(response)
-                setWishlist(response.data)
-                setIsWishlist(!checkIfMealInWishlist(response.data.whishlist,props.id))
-            } catch (error) {
-                console.log(error);
-            }
+        const getWishlist = () => {
+            setWishlist(props.data)
+            console.log(props.wishlistList)
+            setIsWishlist(!checkIfMealInWishlist(props.wishlistList, props.id))
         };
         getWishlist()
     }, []);
