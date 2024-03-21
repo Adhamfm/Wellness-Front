@@ -1,6 +1,6 @@
 import "./Footer.css"
 import { Link } from "react-router-dom";
-
+import googlePlayImg from "/assets/googleplay.jpg"
 
 function Footer() {
     return (
@@ -41,7 +41,7 @@ function Footer() {
                             <Link to="#"><i className="fab fa-whatsapp"></i></Link>
                         </div>
                         <div className="G-play">
-                            <Link to=""><img src="src/assets/googleplay.jpg" alt="play button" /></Link>
+                            <Link to=""><img src={googlePlayImg} alt="play button" /></Link>
                         </div>
                     </div>
                 </div>

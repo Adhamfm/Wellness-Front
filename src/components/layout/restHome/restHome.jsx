@@ -1,5 +1,5 @@
 import './styles.css'
-
+import mealTestImg from '/assets/MealTest.jpg'
 export default function RestHome() {
     return (
         <>
@@ -29,7 +29,7 @@ export default function RestHome() {
                 </div>
                 <div className="pro-collection ">
                     <div className="product-cart">
-                        <img src="src/assets/MealTest.jpg" alt="product image" />
+                        <img src={mealTestImg} alt="product image" />
                         <span>Shop</span>
                         <h4>Healthy Dish</h4>
                         <div className="stars">
@@ -40,7 +40,7 @@ export default function RestHome() {
                         <a href="#"><i className="fa-solid fa-cart-shopping buy-icon"></i></a>
                     </div>
                     <div className="product-cart">
-                        <img src="src/assets/MealTest.jpg" alt="product image" />
+                        <img src={mealTestImg} alt="product image" />
                         <span>Shop</span>
                         <h4>Healthy Dish</h4>
                         <div className="stars">
@@ -51,7 +51,7 @@ export default function RestHome() {
                         <a href="#"><i className="fa-solid fa-cart-shopping buy-icon"></i></a>
                     </div>
                     <div className="product-cart">
-                        <img src="src/assets/MealTest.jpg" alt="product image" />
+                        <img src={mealTestImg} alt="product image" />
                         <span>Shop</span>
                         <h4>Healthy Dish</h4>
                         <div className="stars">
@@ -62,7 +62,7 @@ export default function RestHome() {
                         <a href="#"><i className="fa-solid fa-cart-shopping buy-icon"></i></a>
                     </div>
                     <div className="product-cart">
-                        <img src="src/assets/MealTest.jpg" alt="product image" />
+                        <img src={mealTestImg} alt="product image" />
                         <span>Shop</span>
                         <h4>Healthy Dish</h4>
                         <div className="stars">
@@ -108,7 +108,7 @@ export default function RestHome() {
             </div>
             <div className="pro-collection ">
                 <div className="product-cart">
-                    <img src="src/assets/MealTest.jpg" alt="product image" />
+                    <img src={mealTestImg} alt="product image" />
                     <span>Chef</span>
                     <h4>Recipe</h4>
                     <div className="stars">
@@ -117,7 +117,7 @@ export default function RestHome() {
                     </div>
                 </div>
                 <div className="product-cart">
-                    <img src="src/assets/MealTest.jpg" alt="product image" />
+                    <img src={mealTestImg} alt="product image" />
                     <span>Chef</span>
                     <h4>Recipe</h4>
                     <div className="stars">
@@ -126,7 +126,7 @@ export default function RestHome() {
                     </div>
                 </div>
                 <div className="product-cart">
-                    <img src="src/assets/MealTest.jpg" alt="product image" />
+                    <img src={mealTestImg} alt="product image" />
                     <span>Chef</span>
                     <h4>Recipe</h4>
                     <div className="stars">
@@ -135,7 +135,7 @@ export default function RestHome() {
                     </div>
                 </div>
                 <div className="product-cart">
-                    <img src="src/assets/MealTest.jpg" alt="product image" />
+                    <img src={mealTestImg} alt="product image" />
                     <span>Chef</span>
                     <h4>Recipe</h4>
                     <div className="stars">
