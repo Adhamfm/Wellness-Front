@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './NavBar.css'; // Importing the CSS file for styling
 import "https://kit.fontawesome.com/0e53af926d.js" //TODO: Check if change. This is for logo(fa fa-bag-shopping)
 import { Button } from '@mui/material';
-
+import wellnessImg from '/assets/WellnessLogo.png'
 function NavBar() {
     const navigate = useNavigate()
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -36,7 +36,7 @@ function NavBar() {
         <div id="header">
             <nav className="header-list-nav">
                 <div className="header-logo">
-                    <Link to="/"><img src="src\assets\WellnessLogo.png" height="50px" alt="Wellness-Logo" /></Link>
+                    <Link to="/"><img src={wellnessImg} height="50px" alt="Wellness-Logo" /></Link>
                 </div>
 
                 <ul>
