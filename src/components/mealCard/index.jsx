@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import './styles.css'
 import React,{ useState , useRef} from 'react'
 import Wishlist from './wishlist';
+import wellnessImg from '/assets/WellnessLogo.png'
 
 export default function MealCard(props) {
     const wishlist = props.wishlistList?.whishlist ?? [];
@@ -12,7 +13,7 @@ export default function MealCard(props) {
     }
     console.log(localStorage.getItem("inputValue"),props.data.title)
     const [isLoading, setIsLoading] = useState(true);
-    const [imgSrc, setImgSrc] = useState("src\assets\WellnessLogo.png")
+    const [imgSrc, setImgSrc] = useState("\assets\WellnessLogo.png")
     function onLoad() {
         // delay for demo only
         //setTimeout(() => setIsLoading(false), 1000);
@@ -23,7 +24,7 @@ export default function MealCard(props) {
     <div className="meal-cart">
     {/* {console.log(props)} */}
     <Link to={`/meals/${props.data.id}`} style={{ textDecoration: 'none' }} >
-      <img src="src\assets\WellnessLogo.png" alt="Meal image" style={{ display: isLoading ? "block" : "none" }}/>
+      <img src={wellnessImg} alt="Meal image" style={{ display: isLoading ? "block" : "none" }}/>
       <img src={props.data.images[2]} alt="" style={{ display: isLoading ? "none" : "block" }} onLoad={onLoad}/>
     </Link>
       <span>MEAL</span>

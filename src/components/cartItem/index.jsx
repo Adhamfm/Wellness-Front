@@ -1,5 +1,6 @@
 import { Link,useNavigate } from 'react-router-dom';
 import React,{ useState , useRef,useEffect} from 'react';
+import wellnessImg from '/assets/WellnessLogo.png'
 
 export default function cartCard(props) {
 
@@ -21,7 +22,7 @@ export default function cartCard(props) {
     <div className="meal-cart">
     {/* {console.log(props)} */}
     <Link to={`/meals/${props.data.id}`} style={{ textDecoration: 'none' }} >
-      <img src="src\assets\WellnessLogo.png" alt="Meal image" style={{ display: isLoading ? "block" : "none" }}/>
+      <img src={wellnessImg} alt="Meal image" style={{ display: isLoading ? "block" : "none" }}/>
       <img src={props.data.images[2]} alt="" style={{ display: isLoading ? "none" : "block" }} onLoad={onLoad}/>
     </Link>
       <span>MEAL</span>

@@ -1,5 +1,5 @@
 #landing {
-    background-image: url(src/assets/LandingHome.jpg);
+    background-image: url(/assets/LandingHome.jpg);
     width: 100%;
     height: 100vh;
     background-size: cover;
