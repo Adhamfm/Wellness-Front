@@ -1,10 +1,8 @@
-import { Link } from 'react-router-dom'
-import './styles.css'
-import React,{ useState , useRef} from 'react'
-import Wishlist from './wishlist';
+import { Link,useNavigate } from 'react-router-dom';
+import React,{ useState , useRef,useEffect} from 'react';
 
-export default function MealCard(props) {
-    const wishlist = props.wishlistList?.whishlist ?? [];
+export default function cartCard(props) {
+
     const data=useRef();
     const handleClick=()=>{
       console.log(props.data.current.title,"initialValue")
@@ -34,7 +32,6 @@ export default function MealCard(props) {
     </div>
     <h4 className="price">EGP {props.data.price}</h4>
     <a href="#"><i className="fa-solid fa-cart-shopping buy-icon" onClick={handleClick}></i></a>
-    <Wishlist id={props.data.id} wishlistList={wishlist}/>
   </div>
   )
 }
