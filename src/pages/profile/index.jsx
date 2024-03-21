@@ -1,4 +1,4 @@
-import { Button, CircularProgress, Grid, Tab, Tabs } from '@mui/material'
+import { Alert, Button, CircularProgress, Grid, Tab, Tabs } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import NavBar from '../../components/layout/NavBar/NavBar'
 import axios from 'axios'
@@ -22,7 +22,8 @@ export default function profile() {
 
   const [mealsLoading, setMealsLoading] = useState(false)
   const [sellerLoading, setSellerLoading] = useState(false)
-
+  const [userLoaded, setUserLoaded] = useState(false);
+  const [error, setError] = useState('');
 
   const [sellerData, setSellerData] = useState({
     name: "",
@@ -38,12 +39,17 @@ export default function profile() {
   useEffect(() => {
     const getSellerData = async () => {
       try {
+        setError("")
         setSellerLoading(true)
         const userLocal = JSON.parse(localStorage.getItem('user'))
         const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/seller/${userLocal.userId}`, { headers: { "authorization": `Bearer ${userLocal.accessToken}` } })
         setSellerData(response.data)
+        setUserLoaded(true)
         setSellerLoading(false)
       } catch (error) {
+        setError("Make sure to use Seller Account")
+        setUserLoaded(false)
+        setSellerLoading(false)
         console.log(error)
       }
     };
@@ -78,7 +84,16 @@ export default function profile() {
     <>
       <NavBar />
       <div style={styles.poster}>
-      <Link to="/addMealPage"><Button variant='contained' color='success'>Add Meal</Button></Link>
+
+        {userLoaded ? (
+          <>
+            <Link to="/addMealPage"><Button variant='contained' color='success'>Add Meal</Button></Link>
+          </>
+        ) : (
+          <>
+          </>
+        )}
+        {error && <div className="error_text"><Alert severity="error">{error}</Alert></div>/*TODO: CHANGE error TO UI/UX STYLE */}
         <div className="profile_banner">
           <h1>welcome, {sellerData.name}</h1>
           {/* <Button onClick={getSellerData} variant="contained"> GET DATA </Button> */}
@@ -103,7 +118,7 @@ export default function profile() {
         <hr />
         <br /><br />
         <h3>MY PRODUCTS</h3>
-        <ProductSection sellerData={sellerData}/>
+        <ProductSection sellerData={sellerData} />
         <br /><br />
       </div>
       <Footer />
@@ -114,12 +129,12 @@ export default function profile() {
 // CSS styles
 const styles = {
   poster: {
-      width: "50%",
-      marginLeft: "25%",
-      marginTop: "50px",
-      fontFamily: "Libre Baskerville, serif",
-      textAlign: "center",
-      marginBottom: "100px",
-      fontSize: "25px",
+    width: "50%",
+    marginLeft: "25%",
+    marginTop: "50px",
+    fontFamily: "Libre Baskerville, serif",
+    textAlign: "center",
+    marginBottom: "100px",
+    fontSize: "25px",
   },
 };

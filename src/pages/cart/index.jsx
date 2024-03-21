@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import NavBar from "../../components/layout/NavBar/NavBar";
-import cartCard from "../../components/cartItem";
+import CartCard from "../../components/cartItem";
 
 import { CircularProgress, Grid } from "@mui/material";
 import axios from "axios";
@@ -8,7 +8,7 @@ import Footer from "../../components/layout/Footer/Footer";
 
 
 
-export default function cart() {
+export default function Cart() {
     const [loading, setLoading] = useState(false);
     const [products, setProducts] = useState([])
 
@@ -45,7 +45,7 @@ export default function cart() {
 
                 {allMeals.map((meal) =>
                     <Grid item xs="auto" key={meal.id}>
-                        <cartCard data={meal} />
+                        <CartCard data={meal} />
                     </Grid>)}
             </Grid>
             <Footer/>

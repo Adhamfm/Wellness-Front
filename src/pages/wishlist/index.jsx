@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import NavBar from '../../components/layout/NavBar/NavBar'
-import { CircularProgress, Grid } from '@mui/material';
+import { Alert, CircularProgress, Grid } from '@mui/material';
 import axios from 'axios';
 import MealCard from '../../components/mealCard';
 import ProductCard from '../../components/productCard';
@@ -11,6 +11,7 @@ export default function WishlistPage() {
     const [allMeals, setAllMeals] = useState([])
     const [allWishlist, setAllWishlist] = useState([]);
     const [wishlist, setWishlist] = useState({});
+    const [error, setError] = useState('');
 
     function getMealItemsFromWishlist(wishlist) {
         return wishlist.filter(item => item.type === "meal");
@@ -23,6 +24,7 @@ export default function WishlistPage() {
         const getAllWishlist = async () => {
             try {
                 setLoading(true)
+                setError("")
                 console.log("Sending Request")
                 const userLocal = JSON.parse(localStorage.getItem('user'))
                 const response1 = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/customer/${userLocal.userId}/wishlist/`,
@@ -34,8 +36,9 @@ export default function WishlistPage() {
                 setAllWishlist(response1.data.whishlist)
                 console.log(response1.data)
                 setLoading(false)
-
             } catch (error) {
+                setError("Make sure to use Customer Account")
+                setLoading(false)
                 console.log(error);
             }
         };
@@ -73,6 +76,7 @@ export default function WishlistPage() {
         <>
             <NavBar />
             <h1>Wishlist</h1>
+            {error && <div className="error_text"><Alert severity="error">{error}</Alert></div>/*TODO: CHANGE error TO UI/UX STYLE */}
             <br /><br />
             <hr />
             <br /><br />

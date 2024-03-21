@@ -2,7 +2,7 @@ import { Link,useNavigate } from 'react-router-dom';
 import React,{ useState , useRef,useEffect} from 'react';
 import wellnessImg from '/assets/WellnessLogo.png'
 
-export default function cartCard(props) {
+export default function CartCard(props) {
 
     const data=useRef();
     const handleClick=()=>{
