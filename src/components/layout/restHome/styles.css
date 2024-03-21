@@ -31,7 +31,7 @@
 
 #landing button {
     background-color: transparent;
-    background-image: url(src/assets/LandingButton.png);
+    background-image: url(/assets/LandingButton.png);
     background-repeat: no-repeat;
     background-size: cover;
     width: 260px;
