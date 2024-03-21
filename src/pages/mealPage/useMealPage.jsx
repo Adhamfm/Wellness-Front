@@ -10,9 +10,9 @@ export default function useMealPage() {
     const [selectedQuantity, setSelectedQuantity] = useState(1)
     const handleQuantityChange = ({ target: { value } }) => {
         
-        if (value < 0) {
-            return;
-        }
+        // if (value < 0) {
+        //     return;
+        // }
         setSelectedQuantity(value);
     }
 

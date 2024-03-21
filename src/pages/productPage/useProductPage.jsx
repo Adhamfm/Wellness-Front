@@ -8,6 +8,9 @@ export default function useProductPage() {
     const [product, setProduct] = useState({});
     const [selectedQuantity, setSelectedQuantity] = useState(1)
     const handleQuantityChange = ({ target: { value } }) => {
+        if (value < 0) {
+            return;
+        }
         setSelectedQuantity(value);
     }
 
@@ -20,7 +23,7 @@ export default function useProductPage() {
                 console.log(error);
             }
         };
-
+    
         if (productId) {
             getProductDetails()
         }

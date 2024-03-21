@@ -21,6 +21,9 @@ export default function ProductPage() {
                 <h2>TITLE: {product.title}</h2>
                 <h3>PRICE: {product.price}</h3>
                 <p style={{marginTop: "30px"}}>DESCRIPTION:{product.description}</p>
+                <input type="number" value={selectedQuantity} onChange={handleQuantityChange} />
+                    <h4>Total: {product.price * selectedQuantity} EGP</h4>
+                    <button className="btn btn-primary" style={{marginTop: "10px"}}>Add to Cart</button>
             </div>
             <Footer />
         </>
