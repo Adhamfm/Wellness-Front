@@ -2,6 +2,7 @@ import React from 'react'
 import './styles.css'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import wellnessImg from '/assets/WellnessLogo.png'
 
 
 
@@ -23,7 +24,7 @@ export default function ProductCard(props) {
     <div className="product-cart">
       {/* {console.log(props)} */}
       <Link to={`/products/${props.data._id}`} style={{ textDecoration: 'none' }} >
-        <img src="src\assets\WellnessLogo.png" alt="product image" />
+        <img src={wellnessImg} alt="product image" />
       </Link>
         <span>SHOP</span>
       <h4>{props.data.title}</h4>
@@ -32,7 +33,7 @@ export default function ProductCard(props) {
         <span><span className="specific">{props.data.finalrate} </span>(630)</span>
       </div>
       <h4 className="price">EGP {props.data.price}</h4>
-      <a href="#"><i className="fa-solid fa-cart-shopping buy-icon"></i></a>
+      <a href="./cart"><i className="fa-solid fa-cart-shopping buy-icon" ></i></a>
     </div>
   )
 }

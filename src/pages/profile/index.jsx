@@ -1,4 +1,4 @@
-import { Button, CircularProgress, Grid, Tab, Tabs } from '@mui/material'
+import { Alert, Button, CircularProgress, Grid, Tab, Tabs } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import NavBar from '../../components/layout/NavBar/NavBar'
 import axios from 'axios'
@@ -6,6 +6,8 @@ import ProductCard from '../../components/productCard'
 import MealCard from '../../components/mealCard'
 import ProductSection from '../../components/profile/productSection'
 import "./style.css"
+import Footer from '../../components/layout/Footer/Footer'
+import { Link } from 'react-router-dom'
 
 
 // const test = {
@@ -20,7 +22,8 @@ export default function profile() {
 
   const [mealsLoading, setMealsLoading] = useState(false)
   const [sellerLoading, setSellerLoading] = useState(false)
-
+  const [userLoaded, setUserLoaded] = useState(false);
+  const [error, setError] = useState('');
 
   const [sellerData, setSellerData] = useState({
     name: "",
@@ -36,12 +39,17 @@ export default function profile() {
   useEffect(() => {
     const getSellerData = async () => {
       try {
+        setError("")
         setSellerLoading(true)
         const userLocal = JSON.parse(localStorage.getItem('user'))
         const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/seller/${userLocal.userId}`, { headers: { "authorization": `Bearer ${userLocal.accessToken}` } })
         setSellerData(response.data)
+        setUserLoaded(true)
         setSellerLoading(false)
       } catch (error) {
+        setError("Make sure to use Seller Account")
+        setUserLoaded(false)
+        setSellerLoading(false)
         console.log(error)
       }
     };
@@ -75,31 +83,58 @@ export default function profile() {
   return (
     <>
       <NavBar />
-      <div className="profile_banner">
-      <h1>welcome {sellerData.name}</h1>
-      {/* <Button onClick={getSellerData} variant="contained"> GET DATA </Button> */}
-      {sellerLoading && <div className="loading_text"><Grid item xs={12}> <CircularProgress color="inherit" /></Grid></div>}
-      <h2>Email:{sellerData.email}</h2>
-      <h2>Phone Number:{sellerData.phone.number}</h2>
-      <h2> Bio: </h2>
-      <h2> Rating </h2>
-      </div>
+      <div style={styles.poster}>
 
-      <h3>MY MEALS</h3>
-      {mealsLoading && <div className="loading_text"><Grid item xs={12}> <CircularProgress color="inherit" /></Grid></div>}
-      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}
-        justifyContent="center">
-        {dataList.map((data, index) => (
-          <Grid item xs="auto" key={data.id}>
-            <MealCard data={data} />
-          </Grid>)
+        {userLoaded ? (
+          <>
+            <Link to="/addMealPage"><Button variant='contained' color='success'>Add Meal</Button></Link>
+          </>
+        ) : (
+          <>
+          </>
         )}
-      </Grid>
-      <br /><br />
-      <hr />
-      <br /><br />
-      <h3>MY PRODUCTS</h3>
-      <ProductSection sellerData={sellerData}/>
+        {error && <div className="error_text"><Alert severity="error">{error}</Alert></div>/*TODO: CHANGE error TO UI/UX STYLE */}
+        <div className="profile_banner">
+          <h1>welcome, {sellerData.name}</h1>
+          {/* <Button onClick={getSellerData} variant="contained"> GET DATA </Button> */}
+          {sellerLoading && <div className="loading_text"><Grid item xs={12}> <CircularProgress color="inherit" /></Grid></div>}
+          <h2>Email:{sellerData.email}</h2>
+          <h2>Phone Number:{sellerData.phone.number}</h2>
+          <h2> Bio: </h2>
+          <h2> Rating </h2>
+        </div>
+
+        <h3>MY MEALS</h3>
+        {mealsLoading && <div className="loading_text"><Grid item xs={12}> <CircularProgress color="inherit" /></Grid></div>}
+        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}
+          justifyContent="center">
+          {dataList.map((data, index) => (
+            <Grid item xs="auto" key={data.id}>
+              <MealCard data={data} />
+            </Grid>)
+          )}
+        </Grid>
+        <br /><br />
+        <hr />
+        <br /><br />
+        <h3>MY PRODUCTS</h3>
+        <ProductSection sellerData={sellerData} />
+        <br /><br />
+      </div>
+      <Footer />
     </>
   )
 }
+
+// CSS styles
+const styles = {
+  poster: {
+    width: "50%",
+    marginLeft: "25%",
+    marginTop: "50px",
+    fontFamily: "Libre Baskerville, serif",
+    textAlign: "center",
+    marginBottom: "100px",
+    fontSize: "25px",
+  },
+};

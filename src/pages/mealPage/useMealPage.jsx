@@ -9,6 +9,10 @@ export default function useMealPage() {
     const [meal, setMeal] = useState({});
     const [selectedQuantity, setSelectedQuantity] = useState(1)
     const handleQuantityChange = ({ target: { value } }) => {
+        
+        if (value < 0) {
+            return;
+        }
         setSelectedQuantity(value);
     }
 
