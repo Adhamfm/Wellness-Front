@@ -50,6 +50,7 @@ export default function LoginSeller() {
                 dispatch({ type: "LOGIN", payload: rest });
                 Cookies.set('user', JSON.stringify(rest));
                 localStorage.setItem('user', JSON.stringify(rest));
+                localStorage.setItem('userType', 'seller');
                 navigate("/"); //Redirect to home
             }, 2000);
 
