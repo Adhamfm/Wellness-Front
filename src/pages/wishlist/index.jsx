@@ -10,6 +10,7 @@ export default function WishlistPage() {
     const [allProducts, setAllProducts] = useState([])
     const [allMeals, setAllMeals] = useState([])
     const [allWishlist, setAllWishlist] = useState([]);
+    const [wishlist, setWishlist] = useState({});
 
     function getMealItemsFromWishlist(wishlist) {
         return wishlist.filter(item => item.type === "meal");
@@ -24,10 +25,14 @@ export default function WishlistPage() {
                 setLoading(true)
                 console.log("Sending Request")
                 const userLocal = JSON.parse(localStorage.getItem('user'))
-                const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/customer/${userLocal.userId}/wishlist/`,
+                const response1 = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/customer/${userLocal.userId}/wishlist/`,
                     { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
-                setAllWishlist(response.data.whishlist)
-                console.log(response.data)
+                const response2 = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/customer/${userLocal.userId}/wishlist/`,
+                    { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
+                console.log(response2)
+                setWishlist(response2.data)
+                setAllWishlist(response1.data.whishlist)
+                console.log(response1.data)
                 setLoading(false)
 
             } catch (error) {
@@ -51,6 +56,17 @@ export default function WishlistPage() {
 
     //get wishlist items
 
+    //get wishlist items
+    useEffect(() => {
+        const getWishlist = async () => {
+            try {
+
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getWishlist()
+    }, []);
 
 
     return (
@@ -68,7 +84,7 @@ export default function WishlistPage() {
 
                 {allMeals.map((meal) =>
                     <Grid item xs="auto" key={meal.id}>
-                        <MealCard data={meal} />
+                        <MealCard data={meal} wishlistList={wishlist} />
                     </Grid>)}
             </Grid>
             <br /><br />

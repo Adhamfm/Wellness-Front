@@ -33,6 +33,7 @@ export default function ProductCard(props) {
       </div>
       <h4 className="price">EGP {props.data.price}</h4>
       <a href="./cart"><i className="fa-solid fa-cart-shopping buy-icon" ></i></a>
+      
     </div>
   )
 }

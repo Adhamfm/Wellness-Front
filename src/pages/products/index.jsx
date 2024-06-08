@@ -57,6 +57,7 @@ export default function Products() {
                 {products.map((product) =>
                     <Grid item xs="auto" key={product._id}>
                         <ProductCard data={product}/>
+                        
                     </Grid>)}
             </Grid>
             <Footer/>

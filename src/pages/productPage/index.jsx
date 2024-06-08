@@ -21,6 +21,12 @@ export default function ProductPage() {
                 <h2>TITLE: {product.title}</h2>
                 <h3>PRICE: {product.price}</h3>
                 <p style={{marginTop: "30px"}}>DESCRIPTION:{product.description}</p>
+<<<<<<< HEAD
+=======
+                <input type="number" value={selectedQuantity} onChange={handleQuantityChange} />
+                    <h4>Total: {product.price * selectedQuantity} EGP</h4>
+                    <button className="btn btn-primary" style={{marginTop: "10px"}}>Add to Cart</button>
+>>>>>>> 825e244448a2b380bba3af308a8a91dbea0cabbb
             </div>
             <Footer />
         </>
@@ -34,6 +40,7 @@ const styles = {
         marginLeft: "25%",
         marginTop: "50px",
         fontFamily: "Libre Baskerville, serif",
+<<<<<<< HEAD
         // textAlign: "center",
         marginBottom: "100px",
         fontSize: "25px",
@@ -42,3 +49,9 @@ const styles = {
         marginTop: "40px",
     }
 };
+=======
+        marginBottom: "100px",
+        fontSize: "25px",
+    },
+};
+>>>>>>> 825e244448a2b380bba3af308a8a91dbea0cabbb

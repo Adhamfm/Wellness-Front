@@ -1,14 +1,9 @@
-import { Link,useNavigate } from 'react-router-dom';
-import React,{ useState , useRef,useEffect} from 'react';
+import { Link } from 'react-router-dom'
+import React,{ useState , useRef} from 'react'
+
+
 
 export default function cartCard(props) {
-
-    const data=useRef();
-    const handleClick=()=>{
-      console.log(props.data.current.title,"initialValue")
-      localStorage.setItem("inputValue",props.data.current.title)
-    }
-    console.log(localStorage.getItem("inputValue"),props.data.title)
     const [isLoading, setIsLoading] = useState(true);
     const [imgSrc, setImgSrc] = useState("src\assets\WellnessLogo.png")
     function onLoad() {
@@ -32,6 +27,8 @@ export default function cartCard(props) {
     </div>
     <h4 className="price">EGP {props.data.price}</h4>
     <a href="#"><i className="fa-solid fa-cart-shopping buy-icon" onClick={handleClick}></i></a>
+    <a href="#"><i className="fa-solid fa-cart-shopping buy-icon"></i></a>
   </div>
   )
 }
+
