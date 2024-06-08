@@ -1,0 +1,151 @@
+
+:root {
+    --margin-left: 4%;
+    --margin-right: 8%;
+    --padding-left: 4%;
+    --padding: 2%;
+    --padding-btns: 10px 20px;
+    --btn-background: rgb(5, 164, 221);
+}
+
+/* start featured meals section */
+
+section.featured-meals {
+    margin-left: var(--margin-left);
+}
+
+section.featured-meals div.featured-list-title {
+    height: 100px;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+section.featured-meals div.featured-list-title div.title {
+    font-size: 30px;
+    font-weight: bold;
+    padding-left: var(--padding-left);
+}
+
+section.featured-meals div.featured-list-title div.list-features {
+    display: flex;
+    gap: 80px;
+    margin-right: var(--margin-right);
+}
+
+section.featured-meals div.featured-list-title div.list-features > button {
+    border: 2px;
+    padding: var(--padding-btns);
+    border-radius: 10px;
+}
+
+section.featured-meals div.featured-list-title div.list-features button.cooker-btn {
+    background-color: var(--btn-background);
+    border: 2px solid black;
+}
+
+/* cart creation */
+section.featured-meals div.cart-container-list {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 50px;
+}
+
+section.featured-meals div.cart-container-list div.cart-container {
+    width: 100%;
+    height: 700px;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    /* background-color: blue; */
+}
+
+section.featured-meals div.cart-container-list div.cart-container div.left {
+    /* background-color: white; */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /* margin-left: var(--margin-left); */
+}
+
+section.featured-meals div.cart-container-list div.cart-container div.right {
+    background-color: white;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+section.featured-meals div.cart-container-list div.cart-container div.left div.cart-image img.cart-image{
+    width: 500px;
+    height: 400px;
+    background-size: cover;
+    position: relative;
+    border-radius: 20px;
+}
+
+/* section.featured-meals div.cart-container-list div.cart-container div.left div.cart-image button.btn {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    padding: var(--padding-btns);
+    background-color: var(--btn-background);
+    border-radius: 10px;
+} */
+
+section.featured-meals div.cart-container-list div.cart-container div.right h2 {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 15px 0px;
+}
+
+section.featured-meals div.cart-container-list div.cart-container div.right p.price {
+    font-size: 15px;
+    margin: 15px 0px;
+    font-weight: bold;
+}
+
+section.featured-meals div.cart-container-list div.cart-container div.right p.des {
+    color: rgb(91, 91, 91);
+    width: 90%;
+    margin: 25px 0px;
+    line-height: 30px;
+}
+
+section.featured-meals div.cart-container-list div.cart-container div.author {
+    display: flex;
+    gap: 30px;
+    /* background-color: black; */
+}
+
+section.featured-meals div.cart-container-list div.cart-container div.author div.avatar{
+    background: url(../assests/images/avatar.webp) center;
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+section.featured-meals div.cart-container-list div.cart-container div.author div.name p.title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    section.featured-meals div.featured-list-title {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    section.featured-meals div.cart-container-list div.cart-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 860px) {
+    section.featured-meals div.cart-container-list div.cart-container div.left div.cart-image img.cart-image {
+        height: 100%;
+        width: 100%;
+    }
+}
