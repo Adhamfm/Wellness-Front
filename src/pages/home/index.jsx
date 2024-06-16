@@ -6,8 +6,9 @@ import Footer from "../../components/layout/Footer/Footer";
 import RestHome from "../../components/layout/restHome/restHome";
 import { Button } from "@mui/material";
 import axios from "axios";
-
-
+import { useState } from "react";
+import "./styleees.css";
+import Draggable from 'react-draggable';
 const userData = {
   name: "dfgh",
   email: "",
@@ -41,17 +42,89 @@ async function updateUserData() {
 }
 
 export default function Home() {
-
+  let x=[]
+  const [modal, setModal] = useState(false);
+  const [data, setData] = useState({
+    email: "",
+    feedback: ""});
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+  
+      setData({ ...data, [name]: value });
+    };
+  
+    const HandleSubmit = (e) => {
+      e.preventDefault();
+      if(data.email.includes("@gmail.com")==0 &
+        data.email.includes("@yahoo.com") ==0){
+          alert("email error")
+        }
+      else if (
+        data.email.length !== 0 &&
+        data.feedback.length !== 0 
+      ) {
+        console.log();
+        console.log(data);
+        alert("Feedback sent successfully");
+        x.push({"email":data.email,"feed":data.feedback})
+        alert(x)
+      } else {
+        alert("Enter data first");
+      }
+    };    
   return (
     <div>
       <NavBar />
+      <div className="App">
+      {modal && (
+        <button
+          className="btn btn-red close-btn"
+          onClick={() => setModal((value) => !value)}
+        >
+          <h1></h1>
+        </button>
+      )}
+      <div>
+        {!modal && (
+          <form className="feedback" onSubmit={HandleSubmit}>
+            <button
+              className="close-btn-form"
+              onClick={() => setModal((value) => !value)}
+            >
+              X
+            </button>
+            <div className="m1-rem">
+              <input
+              type="email"
+                placeholder="Email"
+                name="email"
+                onChange={(e) => handleChange(e)}
+                required
+              />
+            </div>
+            <div className="m2-rem">
+              <textarea
+                placeholder="Feedback"
+                name="feedback"
+                onChange={(e) => handleChange(e)}
+                required
+              />
+            </div>
+            <button className="btn btn-green" onClick={HandleSubmit}>
+              Submit feedback
+            </button>
+          </form>
+        )}
+      </div>
+    </div>
+
       <RestHome />
       {/* <p>home</p>
       <LoginButton text="HELLO" />
       <Link to="/login"> GO TO LOGIN</Link>
       <Button onClick={updateUserData} variant="contained"> GET USER DATA </Button>
       <p>{userData.name}</p> */}
-      
+          
       <Footer />
     </div>
   )
