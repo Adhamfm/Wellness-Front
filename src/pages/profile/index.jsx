@@ -121,7 +121,7 @@ export default function profile() {
         <ProductSection sellerData={sellerData} />
         <br /><br />
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }
