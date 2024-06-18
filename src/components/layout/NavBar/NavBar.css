@@ -55,6 +55,12 @@
     position: relative;
 }
 
+.header-list-icon li {
+    list-style-type: none;
+    padding: 0 20px;
+    position: relative;
+}
+
 .header-list-nav ul a {
     display: flex;
     align-items: center;

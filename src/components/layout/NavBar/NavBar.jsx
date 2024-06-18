@@ -55,7 +55,7 @@ function NavBar() {
                     <li><Link to="/blog.html">Blog</Link></li>
                     <li><Link to="/meals">Meals</Link></li>
                     <li><Link to="/products">Products</Link></li>
-                    <li><Link to="/cart">Cart</Link></li>
+                    
                     {/* <li><Link to="/profile">Profile</Link></li>
                         <li><Link to="/Signup">Signup</Link></li>
                         <li><Link to="/logincustomer">Login Customer</Link></li> */}
@@ -63,8 +63,11 @@ function NavBar() {
                         <>
                             {isCustomer ? (
                             <><li><Link to="/profilecus">Profile</Link></li>
-                            <li><Link to="/wishlist">Wishlist</Link></li></>
-                            ) : (<><li><Link to="/profile">Profile</Link></li></>
+                            <li><Link to="/wishlist">Wishlist</Link></li>
+                            <li><Link to="/cart">Cart</Link></li>
+                            </>
+                            ) : (<><li><Link to="/profile">Profile</Link></li>
+                            <li><Link to="/cart">Cart</Link></li></>
                             )}
                         </>
                     ) : (
@@ -76,9 +79,10 @@ function NavBar() {
                 </ul>
             </nav>
             <div className="header-list-icon">
-
-                {isLoggedIn ? (<Button onClick={handleLogout}> LogOut </Button>) : (<></>)}
-                <Link to="/cart"><i className="fa fa-bag-shopping"></i></Link>
+               
+                <li> {isLoggedIn ? (<Button onClick={handleLogout}> LogOut </Button>) : (<></>)}</li>
+                
+               
             </div>
         </div>
     );
