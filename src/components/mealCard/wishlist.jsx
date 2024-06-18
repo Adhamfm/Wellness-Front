@@ -82,9 +82,10 @@ export default function Wishlist(props) {
         }
     };
 
+    var isCustomer = localStorage.getItem("userType") === "customer";
     return (
         <>
-            {isLoggedIn ? (
+            {(isLoggedIn && isCustomer) ? (
                 // <a href="#" onClick={toggleWishlist}><i className="fa-regular fa-bookmark"></i></a>
                 isWishlist ? (
                     <a href="#" onClick={toggleWishlist}><i className="fa-regular fa-bookmark"></i></a>

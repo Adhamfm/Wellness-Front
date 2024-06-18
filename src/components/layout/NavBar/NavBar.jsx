@@ -12,6 +12,7 @@ function NavBar() {
     const handleLogout = () => {
         // Your logout logic here
         localStorage.removeItem('user')
+        localStorage.removeItem('userType')
         setIsLoggedIn(false);
         navigate("/");
     };

@@ -43,13 +43,14 @@ export default function LoginCustomer() {
       );
       setLoading(false);
       setError("");
-      console.log(data); 
+      // console.log(data); 
       setSuccess(data.message); 
       const {message, ...rest} = data;
       setTimeout(()=>{
         dispatch({type:"LOGIN", payload: rest});
         Cookies.set('user',JSON.stringify(rest));
         localStorage.setItem('user', JSON.stringify(rest));
+        localStorage.setItem('userType', 'customer');
         navigate("/"); //Redirect to home
       }, 2000);
       
@@ -58,7 +59,6 @@ export default function LoginCustomer() {
       setLoading(false);
       setSuccess("");
       console.log(error)
-      console.log(Object.keys(error))
       setError(error.response.data.message);
     }
   };

@@ -69,7 +69,7 @@ export default function Meals() {
                         <MealCard data={meal} wishlistList={wishlist} />
                     </Grid>)}
             </Grid>
-            <Footer />
+            {/* <Footer /> */}
         </>
     )
 }
