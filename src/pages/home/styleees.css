@@ -1,0 +1,46 @@
+.feedback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid grey;
+    padding: 1rem;
+    position: absolute;
+    bottom: 5rem;
+    left: 70rem;
+    border-radius: 5px;
+    background-image: url(https://th.bing.com/th/id/R.83d99e88034970a3f47a42de0b2e2569?rik=c7ysVP%2bEZsISVA&pid=ImgRaw&r=0);
+  }
+  .close-btn-form {
+    border: 0;
+    position: absolute;
+    width:10px;
+    height:10px;
+    top: 0.5rem;
+    right: 0.2rem;
+    background-color: white;
+    border-radius: 50%;
+    background-color: red;
+  }
+  
+  .close-btn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .m1-rem input {
+    border: 1px solid grey;
+    padding: 5px;
+    margin-bottom: 15px;
+  }
+  .m2-rem textarea {
+    padding: 5px;
+    border: 1px solid grey;
+    height:70px;
+    margin-bottom: 10px;
+    text-align: top;
+  }
+.btn-green{
+    border-top: 10px;
+    background-color: green;
+    font-size: large;
+}
