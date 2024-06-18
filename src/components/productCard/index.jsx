@@ -3,7 +3,9 @@ import './styles.css'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import wellnessImg from '/assets/WellnessLogo.png'
+import Slider from '../Slider/Slider'
 
+//import MuiImageSlider from 'mui-image-slider';
 
 
 export default function ProductCard(props) {
@@ -53,9 +55,9 @@ export default function ProductCard(props) {
   return (
     <div className="product-cart">
       {/* {console.log(props)} */}
+        {/* <img src={props.data.images[0]} alt="product image" /> */}
+        <Slider images={props.data.images}/>
       <Link to={`/products/${props.data._id}`} style={{ textDecoration: 'none' }} >
-        <img src={wellnessImg} alt="product image" />
-      </Link>
         <span>SHOP</span>
       <h4>{props.data.title}</h4>
       <div className="stars">
@@ -72,6 +74,7 @@ export default function ProductCard(props) {
            <Link to="/logincustomer"> <i className="fa-solid fa-cart-shopping buy-icon" onClick={handleClick}></i></Link>
         </>
       )}
+      </Link>
     </div>
   )
 }

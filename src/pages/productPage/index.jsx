@@ -2,6 +2,7 @@ import Footer from "../../components/layout/Footer/Footer";
 import NavBar from "../../components/layout/NavBar/NavBar";
 import useProductPage from "./useProductPage"
 import './style.css'
+import Slider from "../../components/Slider/Slider";
 
 export default function ProductPage() {
     const {
@@ -39,6 +40,7 @@ export default function ProductPage() {
                         <div className="left">
                             <div className="cart-image">
                                     {/* <button className="btn">New Design</button> */}
+                                    <Slider images={product.images}/>
                             </div>
                         </div>
                         

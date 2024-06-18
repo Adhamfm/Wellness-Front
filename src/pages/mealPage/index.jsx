@@ -48,7 +48,7 @@ export default function MealPage() {
                         <div className="cart-container">
                             <div className="left">
                                 <div className="cart-image">
-                                    {meal.images && <img className="cart-image" src={meal.images[2]} alt="Meal Image" />}
+                                    {meal.images && <img className="cart-image" src={meal.images[0]} alt="Meal Image" />}
                                 </div>
                             </div>
                             

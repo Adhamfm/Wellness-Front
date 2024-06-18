@@ -52,7 +52,7 @@ export default function MealCard(props) {
       {/* {console.log(props)} */}
       <Link to={`/meals/${props.data.id}`} style={{ textDecoration: 'none' }} >
         <img src={wellnessImg} alt="Meal image" style={{ display: isLoading ? "block" : "none" }} />
-        <img src={props.data.images[2]} alt="" style={{ display: isLoading ? "none" : "block" }} onLoad={onLoad} />
+        <img src={props.data.images[0]} alt="" style={{ display: isLoading ? "none" : "block" }} onLoad={onLoad} />
       </Link>
       <span>MEAL</span>
       <h4>{props.data.title}</h4>
