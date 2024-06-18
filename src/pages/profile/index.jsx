@@ -57,16 +57,44 @@ export default function profile() {
   }, [])
 
   const [dataList, setDataList] = useState([]);
+
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       setMealsLoading(true)
+  //       const promises = sellerData.meals.map(id =>
+  //         axios.get(`${import.meta.env.VITE_BACKEND_URL}/meals/${id}`).catch(error => {
+  //           console.error(`Error fetching product ${id}:`, error);
+  //           return null; // Return null for failed requests
+  //       })
+
+  //       );
+  //       const responses = await Promise.all(promises);
+  //       const data = responses.map(response => response.data);
+  //       setDataList(data);
+  //       setMealsLoading(false)
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+  //   fetchData();
+  // }, [sellerData.meals]);
   useEffect(() => {
     async function fetchData() {
+      setMealsLoading(true)
       try {
-        setMealsLoading(true)
         const promises = sellerData.meals.map(id =>
           axios.get(`${import.meta.env.VITE_BACKEND_URL}/meals/${id}`)
-        );
+            .then(response => response.data) // Extract data from response
+            .catch(error => {
+              console.error(`Error fetching product ${id}:`, error);
+              return null; // Return null for failed requests
+            }
+            ));
         const responses = await Promise.all(promises);
-        const data = responses.map(response => response.data);
-        setDataList(data);
+        // const data = responses.map(response => response.data);
+        const filteredData = responses.filter(data => data !== null);
+        setDataList(filteredData);
         setMealsLoading(false)
       } catch (error) {
         console.log(error);
@@ -79,47 +107,48 @@ export default function profile() {
 
 
 
-
   return (
     <>
       <NavBar />
-      <div style={styles.poster}>
+      <div style={styles.container}>
+        <div >
 
-        {userLoaded ? (
-          <>
-            <Link to="/addMealPage"><Button variant='contained' color='success'>Add Meal</Button></Link>
-          </>
-        ) : (
-          <>
-          </>
-        )}
-        {error && <div className="error_text"><Alert severity="error">{error}</Alert></div>/*TODO: CHANGE error TO UI/UX STYLE */}
-        <div className="profile_banner">
-          <h1>welcome, {sellerData.name}</h1>
-          {/* <Button onClick={getSellerData} variant="contained"> GET DATA </Button> */}
-          {sellerLoading && <div className="loading_text"><Grid item xs={12}> <CircularProgress color="inherit" /></Grid></div>}
-          <h2>Email:{sellerData.email}</h2>
-          <h2>Phone Number:{sellerData.phone.number}</h2>
-          <h2> Bio: </h2>
-          <h2> Rating </h2>
-        </div>
-
-        <h3>MY MEALS</h3>
-        {mealsLoading && <div className="loading_text"><Grid item xs={12}> <CircularProgress color="inherit" /></Grid></div>}
-        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}
-          justifyContent="center">
-          {dataList.map((data, index) => (
-            <Grid item xs="auto" key={data.id}>
-              <MealCard data={data} />
-            </Grid>)
+          {userLoaded ? (
+            <div style={styles.poster}>
+              <Link to="/addMealPage"><Button variant='contained' color='success'>Add Meal</Button></Link>
+            </div>
+          ) : (
+            <>
+            </>
           )}
-        </Grid>
-        <br /><br />
-        <hr />
-        <br /><br />
-        <h3>MY PRODUCTS</h3>
-        <ProductSection sellerData={sellerData} />
-        <br /><br />
+          {error && <div className="error_text"><Alert severity="error">{error}</Alert></div>/*TODO: CHANGE error TO UI/UX STYLE */}
+          <div className="profile_banner">
+            <h1>welcome, {sellerData.name}</h1>
+            {/* <Button onClick={getSellerData} variant="contained"> GET DATA </Button> */}
+            {sellerLoading && <div className="loading_text"><Grid item xs={12}> <CircularProgress color="inherit" /></Grid></div>}
+            <h2>Email:{sellerData.email}</h2>
+            <h2>Phone Number:{sellerData.phone.number}</h2>
+            <h2> Bio: </h2>
+            <h2> Rating </h2>
+          </div>
+
+          <h3>MY MEALS</h3>
+          {mealsLoading && <div className="loading_text"><Grid item xs={12}> <CircularProgress color="inherit" /></Grid></div>}
+          <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}
+            justifyContent="center">
+            {dataList.map((data, index) => (
+              <Grid item xs="auto" key={data.id}>
+                <MealCard data={data} />
+              </Grid>)
+            )}
+          </Grid>
+          <br /><br />
+          <hr />
+          <br /><br />
+          <h3>MY PRODUCTS</h3>
+          <ProductSection sellerData={sellerData} />
+          <br /><br />
+        </div>
       </div>
       {/* <Footer /> */}
     </>
@@ -128,13 +157,14 @@ export default function profile() {
 
 // CSS styles
 const styles = {
-  poster: {
-    width: "50%",
-    marginLeft: "25%",
-    marginTop: "50px",
-    fontFamily: "Libre Baskerville, serif",
-    textAlign: "center",
-    marginBottom: "100px",
-    fontSize: "25px",
+  container: {
+    display: 'flex',
+    margin: "15px 5vh 5px 5vh",
+    justifyContent: 'center', // centers horizontally
+    alignItems: 'center', // centers vertically
+
   },
+poster: {
+  textAlign: "center",
+}
 };
