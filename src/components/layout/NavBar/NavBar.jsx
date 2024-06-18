@@ -8,7 +8,7 @@ import wellnessImg from '/assets/WellnessLogo.png'
 function NavBar() {
     const navigate = useNavigate()
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+    const [isCustomer, setIsCustomer] = useState(false);
     const handleLogout = () => {
         // Your logout logic here
         localStorage.removeItem('user')
@@ -32,6 +32,16 @@ function NavBar() {
         checkLoggedIn();
     }, [isLoggedIn]);
 
+    useEffect(() => {
+        function checkCustomer() {
+            const userType = localStorage.getItem('userType')
+            {
+                setIsCustomer((userType === 'customer') ? true : false);
+            }
+        }
+
+        checkCustomer();
+    }, [isLoggedIn]);
 
     return (
         <div id="header">
@@ -51,8 +61,11 @@ function NavBar() {
                         <li><Link to="/logincustomer">Login Customer</Link></li> */}
                     {isLoggedIn ? (
                         <>
-                            <li><Link to="/profile">Profile</Link></li>
-                            <li><Link to="/wishlist">Wishlist</Link></li>
+                            {isCustomer ? (
+                            <><li><Link to="/profilecus">Profile</Link></li>
+                            <li><Link to="/wishlist">Wishlist</Link></li></>
+                            ) : (<><li><Link to="/profile">Profile</Link></li></>
+                            )}
                         </>
                     ) : (
                         <>

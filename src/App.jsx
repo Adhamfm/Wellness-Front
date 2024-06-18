@@ -17,6 +17,7 @@ import Cart from './pages/cart';
 import Footer from './components/layout/Footer/Footer';
 import WishlistPage from './pages/wishlist';
 import AddMealPage from './pages/addMeal';
+import ProfileCustomer from './pages/profileCustomer';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path="/logincustomer" element={<LoginCustomer/>} exact/>
         <Route path="/loginseller" element={<LoginSeller/>} exact/>
         <Route path="/profile" element={<Profile/>} exact/>
+        <Route path="/profilecus" element={<ProfileCustomer/>} exact/>
         <Route path="/signup" element={<Signup/>} exact/>
         <Route path="/test" element={<FormTest/>} exact/>
         <Route path="/signupcus" element={<SignupCustomerForm/>} exact/>
