@@ -59,7 +59,7 @@ export default function Products() {
                         <ProductCard data={product}/>
                     </Grid>)}
             </Grid>
-            <Footer/>
+            {/* <Footer/> */}
         </>
     )
 }
