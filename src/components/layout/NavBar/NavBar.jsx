@@ -61,9 +61,10 @@ function NavBar() {
                         <li><Link to="/logincustomer">Login Customer</Link></li> */}
                     {isLoggedIn ? (
                         <>
-                            <li><Link to="/profile">Profile</Link></li>
                             {isCustomer ? (
-                                <li><Link to="/wishlist">Wishlist</Link></li>) : (<></>
+                            <><li><Link to="/profilecus">Profile</Link></li>
+                            <li><Link to="/wishlist">Wishlist</Link></li></>
+                            ) : (<><li><Link to="/profile">Profile</Link></li></>
                             )}
                         </>
                     ) : (
