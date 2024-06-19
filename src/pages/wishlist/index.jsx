@@ -81,6 +81,7 @@ export default function WishlistPage() {
             <hr />
             <br /><br />
             <h1>Meals Wishlist</h1>
+            <br /><br />
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}
                 justifyContent="center">
 
@@ -95,9 +96,9 @@ export default function WishlistPage() {
             <hr />
             <br /><br />
             <h1>Products Wishlist</h1>
+            <br /><br />
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}
                 justifyContent="center">
-
                 {loading && <div className="loading_text"><Grid item xs={12}> <CircularProgress color="inherit" /></Grid></div>}
 
 
