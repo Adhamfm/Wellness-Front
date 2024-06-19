@@ -19,6 +19,7 @@ import WishlistPage from './pages/wishlist';
 import AddMealPage from './pages/addMeal';
 import ProfileCustomer from './pages/profileCustomer';
 import Feedback from './pages/feedback';
+import ProfileView from './pages/profileView';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path="/logincustomer" element={<LoginCustomer/>} exact/>
         <Route path="/loginseller" element={<LoginSeller/>} exact/>
         <Route path="/profile" element={<Profile/>} exact/>
+        <Route path="/profile/:profileid" element={<ProfileView/>} exact/>
         <Route path="/profilecus" element={<ProfileCustomer/>} exact/>
         <Route path="/signup" element={<Signup/>} exact/>
         <Route path="/test" element={<FormTest/>} exact/>
