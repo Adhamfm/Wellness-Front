@@ -44,28 +44,28 @@ export default function MealCard(props) {
   }
   const handleOpen = () => {
     setOpen(true);
-};
+  };
 
-const handleClose = (event, reason) => {
+  const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
-        return;
+      return;
     }
 
     setOpen(false);
-};
+  };
 
-const action = (
+  const action = (
     <>
-        <IconButton
-            size="small"
-            aria-label="close"
-            color="inherit"
-            onClick={handleClose}
-        >
-            <CloseIcon fontSize="large" />
-        </IconButton>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="large" />
+      </IconButton>
     </>
-);
+  );
 
   //console.log(localStorage.getItem("inputValue"),props.data.title)
   const [isLoading, setIsLoading] = useState(true);
@@ -76,15 +76,32 @@ const action = (
 
     setIsLoading(false)
   }
+  const handleDeletefromCart = async () => {
+    try {
+      const userLocal = JSON.parse(localStorage.getItem('user'))
+      console.log(userLocal);
+      const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/customer/${userLocal.userId}/cart`,
+        { itemId: props.data.id }, { headers: { "authorization": `Bearer ${userLocal.accessToken}` } }
+      );
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <div className="meal-cart">
       {/* {console.log(props)} */}
       <Link to={`/meals/${props.data.id}`} style={{ textDecoration: 'none' }} >
         <img src={wellnessImg} alt="Meal image" style={{ display: isLoading ? "block" : "none" }} />
         <img src={props.data.images[0]} alt="" style={{ display: isLoading ? "none" : "block" }} onLoad={onLoad} />
-      </Link>
       <span>MEAL</span>
       <h4>{props.data.title}</h4>
+      <div className="stars">
+        <i className="fa-solid fa-star"></i>
+        <span><span className="specific">{props.data.rate} </span>(630)</span>
+      </div>
+      <h4 className="price">EGP {props.data.price}</h4>
+          </Link>
       <Snackbar
 
         open={open}
@@ -104,11 +121,7 @@ const action = (
           Added to Cart
         </Alert>
       </Snackbar>
-      <div className="stars">
-        <i className="fa-solid fa-star"></i>
-        <span><span className="specific">{props.data.rate} </span>(630)</span>
-      </div>
-      <h4 className="price">EGP {props.data.price}</h4>
+
       {isLoggedIn ? (
         <>
           <i className="fa-solid fa-cart-shopping buy-icon" onClick={handleClick}></i>
@@ -119,7 +132,22 @@ const action = (
         </>
       )}
 
-      <Wishlist id={props.data.id} wishlistList={wishlist} />
+      {location.pathname === '/cart' ? (
+        
+        <IconButton
+          size="small"
+          aria-label="close"
+          color="error"
+          onClick={handleDeletefromCart}
+        >
+          <CloseIcon fontSize="large" />
+        </IconButton>
+
+      ) : (
+        <>
+        <Wishlist id={props.data.id} wishlistList={wishlist} />
+        </>
+      )}
     </div>
   )
 }

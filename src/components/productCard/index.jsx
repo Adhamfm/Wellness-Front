@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './styles.css'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import axios from 'axios'
 import wellnessImg from '/assets/WellnessLogo.png'
 import Slider from '../Slider/Slider'
@@ -12,6 +12,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 export default function ProductCard(props) {
   const [open, setOpen] = useState(false);
+  const location = useLocation() //location.pathname === '/cart'
   // if (props.id){
   //   (async () => {
   //     try {
@@ -49,7 +50,7 @@ export default function ProductCard(props) {
       const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/customer/${userLocal.userId}/cart`, {
         itemId: props.data._id,
         quantity: 1
-      }, { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
+      }, { headers: { "authorization": `token ${userLocal.accessToken}` } });
       console.log(response)
       handleOpen()
     } catch (error) {
@@ -82,6 +83,18 @@ export default function ProductCard(props) {
     </>
   );
 
+  const handleDeletefromCart = async () => {
+    try {
+      const userLocal = JSON.parse(localStorage.getItem('user'))
+      console.log(userLocal);
+      const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/customer/${userLocal.userId}/cart`, 
+        {itemId: props.data._id} , { headers: { "authorization": `Bearer ${userLocal.accessToken}` } }
+      );
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <div className="product-cart">
       {/* {console.log(props)} */}
@@ -115,6 +128,21 @@ export default function ProductCard(props) {
         </div>
         <h4 className="price">EGP {props.data.price}</h4>
       </Link>
+      {location.pathname === '/cart' ? (
+
+        <IconButton
+        size="small"
+        aria-label="close"
+        color="error"
+        onClick={handleDeletefromCart}
+      >
+        <CloseIcon fontSize="large" />
+      </IconButton>
+
+      ) : (
+        <>
+        </>
+      )}
       {isLoggedIn ? (
         <>
           <i className="fa-solid fa-cart-shopping buy-icon" onClick={handleClick}></i>
