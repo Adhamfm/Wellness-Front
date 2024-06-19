@@ -16,7 +16,7 @@ function Footer() {
                     <div className="footer-col">
                         <ul>
                             <li><Link to="about">about us</Link></li>
-                            <li><Link to="#">Blog</Link></li>
+                            <li><Link to="feedback">Leave us a Feedback</Link></li>
                             <li><Link to="#">our services</Link></li>
                             <li><Link to="#">privacy policy</Link></li>
                             <li><Link to="#">affiliate program</Link></li>

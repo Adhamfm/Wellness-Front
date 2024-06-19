@@ -5,9 +5,8 @@ import axios from 'axios'
 import ProductCard from '../../components/productCard'
 import MealCard from '../../components/mealCard'
 import ProductSection from '../../components/profile/productSection'
-import "./style.css"
 import Footer from '../../components/layout/Footer/Footer'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 
 // const test = {
@@ -18,8 +17,8 @@ import { Link } from 'react-router-dom'
 // }
 
 
-export default function profile() {
-
+export default function ProfileView() {
+    const { profileid: sellerId } = useParams();
   const [mealsLoading, setMealsLoading] = useState(false)
   const [sellerLoading, setSellerLoading] = useState(false)
   const [userLoaded, setUserLoaded] = useState(false);
@@ -42,7 +41,7 @@ export default function profile() {
         setError("")
         setSellerLoading(true)
         const userLocal = JSON.parse(localStorage.getItem('user'))
-        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/seller/${userLocal.userId}`, { headers: { "authorization": `Bearer ${userLocal.accessToken}` } })
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/seller/${sellerId}`)
         setSellerData(response.data)
         setUserLoaded(true)
         setSellerLoading(false)
@@ -115,15 +114,17 @@ export default function profile() {
 
           {userLoaded ? (
             <div style={styles.poster}>
-              <Link to="/addMealPage"><Button variant='contained' color='success'>Add Meal</Button></Link>
+              {/* <Link to="/addMealPage"><Button variant='contained' color='success'>Add Meal</Button></Link> */}
             </div>
           ) : (
             <>
             </>
           )}
+          <br />
           {error && <div className="error_text"><Alert severity="error">{error}</Alert></div>/*TODO: CHANGE error TO UI/UX STYLE */}
+          <br />
           <div className="profile_banner">
-            <h1>welcome, {sellerData.name}</h1>
+            <h1>{sellerData.name}</h1>
             {/* <Button onClick={getSellerData} variant="contained"> GET DATA </Button> */}
             {sellerLoading && <div className="loading_text"><Grid item xs={12}> <CircularProgress color="inherit" /></Grid></div>}
             <h2>Email:{sellerData.email}</h2>
@@ -132,7 +133,7 @@ export default function profile() {
             <h2> Rating </h2>
           </div>
 
-          <h3>MY MEALS</h3>
+          <h3>MEALS</h3>
           {mealsLoading && <div className="loading_text"><Grid item xs={12}> <CircularProgress color="inherit" /></Grid></div>}
           <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}
             justifyContent="center">
@@ -145,7 +146,7 @@ export default function profile() {
           <br /><br />
           <hr />
           <br /><br />
-          <h3>MY PRODUCTS</h3>
+          <h3>PRODUCTS</h3>
           <ProductSection sellerData={sellerData} />
           <br /><br />
         </div>

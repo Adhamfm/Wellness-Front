@@ -19,7 +19,7 @@ import { Field, Formik, withFormik, Form } from 'formik';
 import SignUpValidationForm from '../../components/validation/SignUpValidationScema';
 import * as yup from "yup";
 import axios from 'axios';
-import { Alert, CircularProgress } from '@mui/material';
+import { Alert, CircularProgress, InputLabel, MenuItem, Select } from '@mui/material';
 import NavBar from '../../components/layout/NavBar/NavBar';
 import AddValidationForm from './addMealValidation';
 
@@ -36,6 +36,7 @@ const mealInfo = {
   seller: "",
   price: 0,
   tags: [],
+  category: "",
   description: "",
   title: ""
 }
@@ -45,6 +46,7 @@ export default function AddMealPage() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
+  const [cat, setCat] = useState("");
 
   const mealSubmit = async () => {
     try {
@@ -55,6 +57,7 @@ export default function AddMealPage() {
         {
           seller: userLocal.userId,
           price: mealInfo.price,
+          category: mealInfo.category,
           description: mealInfo.description,
           title: mealInfo.title,
           tags: [mealInfo.tags],
@@ -63,9 +66,9 @@ export default function AddMealPage() {
       setError("");
       setLoading(false);
       setSuccess(response);
-      setTimeout(() => {
-        navigate("/login"); //Redirect to login
-      }, 2000);
+      // setTimeout(() => {
+      //   navigate("/login"); //Redirect to login
+      // }, 2000);
       console.log("SUCCESS");
     } catch (error) {
       setLoading(false);
@@ -75,6 +78,13 @@ export default function AddMealPage() {
       setError(error.response.data.message);
     }
   };
+
+  const handleChange = (event) => {
+    setCat(event.target.value);
+    mealInfo["category"] = event.target.value;
+    console.log(mealInfo["category"]);
+  };
+
   return (
     <>
       <NavBar />
@@ -97,6 +107,7 @@ export default function AddMealPage() {
               enableReinitialize
               initialValues={initialValue}
               onSubmit={(values, formikHelpers) => {
+                console.log("wewewe");
                 for (let key in values) {
                   // Assign the value from values object to loginInfo object
                   if (mealInfo.hasOwnProperty(key)) {
@@ -159,6 +170,60 @@ export default function AddMealPage() {
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
+                      {/* <Field
+                        name="category"
+                        type="string"
+                        as={TextField}
+                        select
+                        value={cat}
+                        // labelId="demo-simple-select-helper-label"
+                        // id="demo-simple-select-helper"
+                        fullWidth
+                        label="Category"
+                        error={Boolean(errors.tags) && Boolean(touched.tags)}
+                        helperText={Boolean(touched.tags) && errors.tags}
+                        onChange={handleChange}
+                      >
+                        <MenuItem value={"appetizers"}>Appetizers</MenuItem>
+                        <MenuItem value={"breakfastFoods"}>Breakfast</MenuItem>
+                        <MenuItem value={"desserts"}>Desserts</MenuItem>
+                        <MenuItem value={"drinks"}>Drinks</MenuItem>
+                        <MenuItem value={"mostlyMeat"}>Meat</MenuItem>
+                        <MenuItem value={"salads"}>Salads</MenuItem>
+                        <MenuItem value={"sandwiches"}>Sandwiches</MenuItem>
+                        <MenuItem value={"pasta"}>Pasta</MenuItem>
+                        <MenuItem value={"soups"}>Soups</MenuItem>
+                        <MenuItem value={"mainDishes"}>Main Dishes</MenuItem>
+                        <MenuItem value={"sideDishes"}>Side Dishes</MenuItem>
+                        <MenuItem value={"other"}>Other</MenuItem>
+                      </Field> */}
+                      <Field
+                        name="category"
+                        type="string"
+                        as={TextField}
+                        variant="outlined"
+                        color="primary"
+                        label="Category"
+                        select
+                        fullWidth
+                        error={Boolean(errors.tags) && Boolean(touched.tags)}
+                        helperText={Boolean(touched.tags) && errors.tags}
+                      >
+                        <MenuItem value={"appetizers"}>Appetizers</MenuItem>
+                        <MenuItem value={"breakfastFoods"}>Breakfast</MenuItem>
+                        <MenuItem value={"desserts"}>Desserts</MenuItem>
+                        <MenuItem value={"drinks"}>Drinks</MenuItem>
+                        <MenuItem value={"mostlyMeat"}>Meat</MenuItem>
+                        <MenuItem value={"salads"}>Salads</MenuItem>
+                        <MenuItem value={"sandwiches"}>Sandwiches</MenuItem>
+                        <MenuItem value={"pasta"}>Pasta</MenuItem>
+                        <MenuItem value={"soups"}>Soups</MenuItem>
+                        <MenuItem value={"mainDishes"}>Main Dishes</MenuItem>
+                        <MenuItem value={"sideDishes"}>Side Dishes</MenuItem>
+                        <MenuItem value={"other"}>Other</MenuItem>
+                      </Field>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
                       <Field
                         name="tags"
                         type="string"
@@ -176,8 +241,8 @@ export default function AddMealPage() {
 
                   <Button variant="contained" type="submit" fullWidth sx={{ mt: 3, mb: 2 }}>Add Meal</Button>
                   {error && <div className="error_text"><Alert severity="error">{error}</Alert></div>}
-                    {success && <div className="success_text"><Alert severity="success">Meal Added Successfully</Alert></div>}
-                    {loading && <div className="loading_text"> <CircularProgress color="inherit" /></div>}
+                  {success && <div className="success_text"><Alert severity="success">Meal Added Successfully</Alert></div>}
+                  {loading && <div className="loading_text"> <CircularProgress color="inherit" /></div>}
                 </Form>
               )}
             </Formik>

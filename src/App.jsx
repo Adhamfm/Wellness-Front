@@ -17,6 +17,9 @@ import Cart from './pages/cart';
 import Footer from './components/layout/Footer/Footer';
 import WishlistPage from './pages/wishlist';
 import AddMealPage from './pages/addMeal';
+import ProfileCustomer from './pages/profileCustomer';
+import Feedback from './pages/feedback';
+import ProfileView from './pages/profileView';
 
 
 function App() {
@@ -28,6 +31,8 @@ function App() {
         <Route path="/logincustomer" element={<LoginCustomer/>} exact/>
         <Route path="/loginseller" element={<LoginSeller/>} exact/>
         <Route path="/profile" element={<Profile/>} exact/>
+        <Route path="/profile/:profileid" element={<ProfileView/>} exact/>
+        <Route path="/profilecus" element={<ProfileCustomer/>} exact/>
         <Route path="/signup" element={<Signup/>} exact/>
         <Route path="/test" element={<FormTest/>} exact/>
         <Route path="/signupcus" element={<SignupCustomerForm/>} exact/>
@@ -38,6 +43,7 @@ function App() {
         <Route path="/meals" element={<Meals/>} exact/>
         <Route path="/meals/:mealid" element={<MealPage/>} exact/>
         <Route path="/cart" element={<Cart/>} exact/>
+        <Route path="/feedback" element={<Feedback/>} exact/>
         <Route path="/tabtest" element={<TabsTest/>} exact/>
         <Route path="*" element={<div><NavBar/><h1>404 PAGE NOT FOUND</h1></div>} exact/>
       </Routes>

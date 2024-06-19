@@ -7,6 +7,7 @@ export default function useProductPage() {
     const { proid: productId } = useParams();
     const [product, setProduct] = useState({});
     const [selectedQuantity, setSelectedQuantity] = useState(1)
+    const [aimg, setImg] = useState([]);
     const handleQuantityChange = ({ target: { value } }) => {
         setSelectedQuantity(value);
     }
@@ -16,6 +17,7 @@ export default function useProductPage() {
             try {
                 const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/products/${productId}`);
                 setProduct(response.data)
+                setImg(response.data.images);
             } catch (error) {
                 console.log(error);
             }
@@ -31,6 +33,6 @@ export default function useProductPage() {
         productId,
         selectedQuantity,
         handleQuantityChange,
-
+        aimg
     }
 }
