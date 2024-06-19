@@ -18,6 +18,7 @@ import Footer from './components/layout/Footer/Footer';
 import WishlistPage from './pages/wishlist';
 import AddMealPage from './pages/addMeal';
 import ProfileCustomer from './pages/profileCustomer';
+import Feedback from './pages/feedback';
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Route path="/meals" element={<Meals/>} exact/>
         <Route path="/meals/:mealid" element={<MealPage/>} exact/>
         <Route path="/cart" element={<Cart/>} exact/>
+        <Route path="/feedback" element={<Feedback/>} exact/>
         <Route path="/tabtest" element={<TabsTest/>} exact/>
         <Route path="*" element={<div><NavBar/><h1>404 PAGE NOT FOUND</h1></div>} exact/>
       </Routes>
