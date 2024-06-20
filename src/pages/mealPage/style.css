@@ -49,11 +49,8 @@ section.featured-meals div.cart-container-list {
     display: flex;
     justify-content: space-between;
     margin-right: 50px;
-    flex-direction: column;
 }
-section.featured-meals div.cart-container-list div.comment-section {
-    margin: var(--margin-left);
-}
+
 section.featured-meals div.cart-container-list div.cart-container {
     width: 100%;
     height: 700px;
