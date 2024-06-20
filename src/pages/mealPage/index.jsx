@@ -80,6 +80,21 @@ export default function MealPage() {
         }
     }
 
+    const handleDeleteMeal = async () => {
+        //console.log(props.data);
+        console.log(mealId);
+        try {
+            const userLocal = JSON.parse(localStorage.getItem('user'))
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/customer/${userLocal.userId}/cart`, 
+                { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
+            handleOpen()
+            console.log(response);
+            console.log("added");
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     async function addReviews(event) {
         event.preventDefault();
         const form = new FormData(event.target);
@@ -174,7 +189,7 @@ export default function MealPage() {
                                 {/* <h2>TITLE: {meal.title}</h2> */}
                                 <h2>DESCRIPTION:</h2>
                                 <p className="des" style={{ fontSize: 24 }}> {meal.description}</p>
-                                <h3 className="price">PRICE: EGP {meal.price}</h3>
+                                <h3 className="price">PRICE: EGP {meal.price} | Rating: {meal.rate}⭐</h3>
                                 <br />
                                 <div className="list-features">
                                     <Button className="" style={{ margin: 5 }} variant="contained" onClick={handleClick} >Add to Cart</Button>
@@ -189,11 +204,13 @@ export default function MealPage() {
                                     )}
                                 </div>
                                 <br /><br />
-                                <StarRating value={rate} onValueChange={handleRateChange} />
+                                
                             </div>
                         </div>
                         <div className="comment-section">
-                            <form onSubmit={handleSubmit} target="">
+                        <StarRating value={rate} onValueChange={handleRateChange} />
+
+                            <form style={{marginTop:50}} onSubmit={handleSubmit} target="">
                                 <input
                                     name="review"
                                     style={{
