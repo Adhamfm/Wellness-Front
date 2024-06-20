@@ -96,17 +96,26 @@ export default function MealPage() {
                 review = entry[1];
         }
         console.log(review);
-        
-        const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/meals/${meal.id}/reviews/${reviewID}`, {
-            content:review
-        }, { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
-        console.log(response);
+        try {
+            const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/meals/${meal.id}/reviews/${reviewID}`, {
+                content:review
+            }, { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
+            console.log(response);
+            
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     async function deleteReviews (reviewID) {
-        const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/meals/${meal.id}/reviews/${reviewID}`,
-        { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
-        console.log(response);
+        try {
+            const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/meals/${meal.id}/reviews/${reviewID}`,
+            { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
+            console.log(response);
+            
+        } catch (error) {
+            console.log(error);
+        }
 
     }
     // const currentDate = new Date().toLocaleDateString(); // Get the current date
