@@ -6,8 +6,9 @@ import Button from '@mui/material/Button';
 import "./style.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Alert, IconButton, Snackbar, SnackbarContent } from "@mui/material";
+import { Alert, IconButton, Rating, Snackbar, SnackbarContent, Stack } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
+import StarRating from "../../components/StarRating/StarRating";
 
 export default function MealPage() {
     const {
@@ -18,6 +19,11 @@ export default function MealPage() {
         loading,
     } = useMealPage();
 
+    const [rate, setRate] = useState(Math.floor(meal.rate));
+    const handleRateChange = async (newValue) => {
+        setRate(newValue);
+        //const response = axios.
+    }
     const [isAddedToCart, setIsAddedToCart] = useState(false);
     const [open, setOpen] = useState(false); //for Snackbar
     // Function to handle adding the meal to the cart
@@ -93,7 +99,7 @@ export default function MealPage() {
                             severity="success"
                             variant="filled"
                             sx={{ width: '100%' }}
-                            style={{fontSize: "16px"}}
+                            style={{ fontSize: "16px" }}
                         >
                             Added to Cart
                         </Alert>
@@ -122,15 +128,20 @@ export default function MealPage() {
                                 <div className="list-features">
                                     <Button className="" style={{ margin: 5 }} variant="contained" onClick={handleClick} >Add to Cart</Button>
                                     <Link to={`/profile/${meal.seller}`}><Button className="" style={{ margin: 5 }} variant="contained">Cooker</Button></Link>
-                                    <Button className="" style={{ margin: 5 }} variant="contained">More</Button>
+                                    <Link to={`/meals/edit/${meal.id}`}><Button className="" style={{ margin: 5 }} color="secondary" variant="contained">Edit</Button></Link>
                                 </div>
+                                <br /><br />
+                                <StarRating value={rate} onValueChange={handleRateChange}/>
                             </div>
                         </div>
+                        
                     </div>
                 ) : (
                     <p className="des">Meal not found</p>
+                    
                 )}
             </section>
+            
 
         </>
     );

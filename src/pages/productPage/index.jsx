@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import CloseIcon from '@mui/icons-material/Close';
 import axios from "axios";
 import { useState } from "react";
+import StarRating from "../../components/StarRating/StarRating";
 
 export default function ProductPage() {
     const {
@@ -18,7 +19,11 @@ export default function ProductPage() {
         aimg
     } = useProductPage();
     const [open, setOpen] = useState(false); //for Snackbar
-    
+    const [rate, setRate] = useState(Math.floor(product.rate));
+    const handleRateChange = async (newValue) => {
+        setRate(newValue);
+        //const response = axios.
+    }
     const handleOpen = () => {
         setOpen(true);
     };
@@ -116,6 +121,8 @@ export default function ProductPage() {
                                 <Link to={`/profile/${product.owner}`}><Button className="" style={{ margin: 5 }} variant="contained">Cooker</Button></Link>
                                 <Button className="" style={{ margin: 5 }} variant="contained">More</Button>
                             </div>
+                            <br /><br />
+                            <StarRating value={rate} onValueChange={handleRateChange}/>
                         </div>
                     </div>
                 </div>
