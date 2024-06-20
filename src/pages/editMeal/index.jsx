@@ -26,9 +26,9 @@ import AddValidationForm from './editMealValidation';
 
 
 const mealInfo = {
-  id:"",
+  id: "",
   seller: "",
-  images:[],
+  images: [],
   price: 0,
   tags: [],
   category: "",
@@ -70,7 +70,7 @@ export default function EditMeal() {
     }
 
     mealGet();
-}, []);
+  }, []);
 
   const mealSubmit = async () => {
     try {
@@ -78,17 +78,21 @@ export default function EditMeal() {
       console.log("Meal Info at Edit: ")
       setLoading(true);
       console.log(mealInfo);
+      const test = {
+        seller: userLocal.userId,
+        price: mealInfo.price,
+        category: mealInfo.category,
+        description: mealInfo.description,
+        title: mealInfo.title,
+        images: mealInfo.images
+      }
+      console.log("testingng ..v");
+      console.log(test)
       const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/meals/${mealInfo.id}`,
-        {
-          seller: userLocal.userId,
-          price: mealInfo.price,
-          category: mealInfo.category,
-          description: mealInfo.description,
-          title: mealInfo.title,
-          tags: [mealInfo.tags],
-          images: [mealInfo.images]
-        },
+        test
+        ,
         { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
+
       console.log(response);
       setError("");
       setLoading(false);
