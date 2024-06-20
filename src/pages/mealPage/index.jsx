@@ -6,10 +6,12 @@ import Button from '@mui/material/Button';
 import "./style.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Alert, IconButton, Snackbar, SnackbarContent } from "@mui/material";
+import { Alert, IconButton, Rating, Snackbar, SnackbarContent, Stack } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
+import StarRating from "../../components/StarRating/StarRating";
 
 export default function MealPage() {
+    const userLocal = JSON.parse(localStorage.getItem('user'))
     const {
         meal,
         mealId,
@@ -18,6 +20,11 @@ export default function MealPage() {
         loading,
     } = useMealPage();
 
+    const [rate, setRate] = useState(Math.floor(meal.rate));
+    const handleRateChange = async (newValue) => {
+        setRate(newValue);
+        //const response = axios.
+    }
     const [isAddedToCart, setIsAddedToCart] = useState(false);
     const [open, setOpen] = useState(false); //for Snackbar
     // Function to handle adding the meal to the cart
@@ -70,6 +77,53 @@ export default function MealPage() {
         }
     }
 
+    async function addReviews (event) {
+        event.preventDefault();
+        const form = new FormData(event.target);
+        let review;
+        for (let entry of form.entries()) {
+                review = entry[1];
+        }
+        console.log(review);
+
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/meals/${meal.id}/reviews`, {
+            content:review
+        }, { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
+        console.log(response);
+        event.target.reset();
+    }
+
+    async function editReviews (reviewID) {
+
+        const form = new FormData(event.target);
+        let review;
+        for (let entry of form.entries()) {
+                review = entry[1];
+        }
+        console.log(review);
+
+        const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/meals/${meal.id}/reviews/${reviewID}`, {
+            content:review
+        }, { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
+        console.log(response);
+    }
+
+    async function deleteReviews (reviewID) {
+        const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/meals/${meal.id}/reviews/${reviewID}`,
+        { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
+        console.log(response);
+
+    }
+    // const currentDate = new Date().toLocaleDateString(); // Get the current date
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        if (!userLocal || !userLocal.userId) {
+            alert('Please log in to write a review.');
+            return;
+        }
+        addReviews(event);
+    };
+
     return (
         <>
             <NavBar />
@@ -93,7 +147,7 @@ export default function MealPage() {
                             severity="success"
                             variant="filled"
                             sx={{ width: '100%' }}
-                            style={{fontSize: "16px"}}
+                            style={{ fontSize: "16px" }}
                         >
                             Added to Cart
                         </Alert>
@@ -122,15 +176,81 @@ export default function MealPage() {
                                 <div className="list-features">
                                     <Button className="" style={{ margin: 5 }} variant="contained" onClick={handleClick} >Add to Cart</Button>
                                     <Link to={`/profile/${meal.seller}`}><Button className="" style={{ margin: 5 }} variant="contained">Cooker</Button></Link>
-                                    <Button className="" style={{ margin: 5 }} variant="contained">More</Button>
+                                    <Link to={`/meals/edit/${meal.id}`}><Button className="" style={{ margin: 5 }} color="secondary" variant="contained">Edit</Button></Link>
                                 </div>
+                                <br /><br />
+                                <StarRating value={rate} onValueChange={handleRateChange}/>
                             </div>
+                        </div>
+                        <div className="comment-section">
+                            <form onSubmit={handleSubmit} target="">
+                                <input 
+                                    name="review" 
+                                    style={{ 
+                                        height: '50px', 
+                                        width: '100%', 
+                                        padding: '10px', 
+                                        borderRadius: '5px', 
+                                        border: '1px solid #ccc', 
+                                        boxShadow: '0 2px 4px rgba(0,0,0,0.1)', 
+                                        fontSize: '16px' 
+                                    }}
+                                    placeholder="Write your review..."
+                                />
+                            </form>
+
+                            {meal.reviews && meal.reviews.map((data, index) => {
+
+                                const reviewDate = new Date(data.reviewDate).toLocaleDateString(); // Format the date
+
+                                return ( 
+                                <div key={index} style={{ marginTop: '10px', padding: '10px', border: '1px solid #eee', borderRadius: '5px', backgroundColor: '#fafafa' }}>
+                                    <p style={{ margin: '5px 0', fontWeight: 'bold' }}>{data.customerName}</p>
+                                    <p style={{ margin: '5px 0', fontSize: '12px', color: '#999' }}>{reviewDate}</p>
+                                    <p style={{ margin: '5px 0' }}>{data.content}</p>
+                                    {data.customer == userLocal.userId && (
+                                        <div>
+                                            <button 
+                                                onClick={() => editReviews(data._id)} 
+                                                style={{ 
+                                                    marginRight: '10px', 
+                                                    padding: '5px 10px', 
+                                                    borderRadius: '5px', 
+                                                    border: 'none', 
+                                                    backgroundColor: '#007BFF', 
+                                                    color: 'white', 
+                                                    cursor: 'pointer' 
+                                                }}
+                                            >
+                                                Edit
+                                            </button>
+                                            <button 
+                                                onClick={() => deleteReviews(data._id)} 
+                                                style={{ 
+                                                    padding: '5px 10px', 
+                                                    borderRadius: '5px', 
+                                                    border: 'none', 
+                                                    backgroundColor: '#FF0000', 
+                                                    color: 'white', 
+                                                    cursor: 'pointer' 
+                                                }}
+                                            >
+                                                Delete
+                                            </button>
+                                        </div>
+                                    )}
+                                </div>
+                                )
+                            })}
+                            {/* {console.log(meal)} */}
                         </div>
                     </div>
                 ) : (
                     <p className="des">Meal not found</p>
+                    
                 )}
             </section>
+            
 
         </>
     );

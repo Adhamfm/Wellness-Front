@@ -20,6 +20,7 @@ import AddMealPage from './pages/addMeal';
 import ProfileCustomer from './pages/profileCustomer';
 import Feedback from './pages/feedback';
 import ProfileView from './pages/profileView';
+import EditMeal from './pages/editMeal';
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
         <Route path="/addMealPage" element={<AddMealPage/>} exact/>
         <Route path="/products/:proid" element={<ProductPage/>} exact/>
         <Route path="/meals" element={<Meals/>} exact/>
+        <Route path="/meals/edit/:mealid" element={<EditMeal/>} exact/>
         <Route path="/meals/:mealid" element={<MealPage/>} exact/>
         <Route path="/cart" element={<Cart/>} exact/>
         <Route path="/feedback" element={<Feedback/>} exact/>
