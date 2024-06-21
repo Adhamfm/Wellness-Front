@@ -1,3 +1,4 @@
+
 :root {
     --margin-left: 4%;
     --margin-right: 8%;
@@ -6,18 +7,6 @@
     --padding-btns: 10px 20px;
     --btn-background: rgb(5, 164, 221);
 }
-
-.image-style {
-    width: 280px;
-    border: 1px solid #ebebeb;
-    padding: 13px;
-    margin-bottom: 30px;
-    border-radius: 25px;
-    position: relative;
-    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
-    transition: all 0.3s;
-}
-
 
 /* start featured house section */
 
@@ -40,7 +29,7 @@ section.featured-products div.our-recommendation::before {
 section.featured-products div.featured-list-title {
     height: 100px;
     display: flex;
-    justify-content: space-between;
+    justify-content:space-between;
     align-items: center;
 }
 
@@ -56,7 +45,7 @@ section.featured-products div.featured-list-title div.list-features {
     margin-right: var(--margin-right);
 }
 
-section.featured-products div.featured-list-title div.list-features>button {
+section.featured-products div.featured-list-title div.list-features > button {
     border: 2px;
     padding: var(--padding-btns);
     border-radius: 10px;
@@ -67,9 +56,7 @@ section.featured-products div.featured-list-title div.list-features button.house
     border: 2px solid black;
 }
 
-
 /* cart creation */
-
 section.featured-products div.cart-container-list {
     display: flex;
     justify-content: space-between;
@@ -101,16 +88,16 @@ section.featured-products div.cart-container-list div.cart-container div.right {
     flex-direction: column;
 }
 
+
+
 section.featured-products div.cart-container-list div.cart-container div.left div.cart-image {
-    width: 600px;
+    width: 500px;
     height: 400px;
     /* background-color: black; */
-    /* background: url(../../assets/MealTest.jpg) center; */
+    background: url(../../assets/MealTest.jpg) center;
     background-size: cover;
     position: relative;
     border-radius: 20px;
-    border: 1px solid #ebebeb;
-    border-radius: 25px;
 }
 
 section.featured-products div.cart-container-list div.cart-container div.left div.cart-image button.btn {
@@ -147,7 +134,7 @@ section.featured-products div.cart-container-list div.cart-container div.author 
     /* background-color: black; */
 }
 
-section.featured-products div.cart-container-list div.cart-container div.author div.avatar {
+section.featured-products div.cart-container-list div.cart-container div.author div.avatar{
     background: url(../assests/images/avatar.webp) center;
     background-size: cover;
     width: 50px;
@@ -161,15 +148,19 @@ section.featured-products div.cart-container-list div.cart-container div.author 
     font-weight: bold;
 }
 
+
 @media (max-width: 768px) {
     section.featured-products {
         height: 1300px;
         margin-top: 20px;
     }
+
     section.featured-products div.featured-list-title {
         flex-direction: column;
         align-items: center;
+        
     }
+
     section.featured-products div.cart-container-list div.cart-container {
         flex-direction: column;
         align-items: center;

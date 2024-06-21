@@ -5,10 +5,6 @@ const AddValidationForm = {
         .required("Required")
         .min(4, "Name should be longer")
         .matches(/^[aA-zZ\s]+$/, 'Numbers and special characters are not allowed'),
-    category: yup.string()
-        .required("Required")
-        .min(4, "Name should be longer")
-        .matches(/^[aA-zZ\s]+$/, 'Numbers and special characters are not allowed'),
     tags: yup.string("Must be String")
         .required("Required")
         .min(2, "Tag should be longer")
