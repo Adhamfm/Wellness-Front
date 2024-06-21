@@ -55,6 +55,7 @@ function App() {
           <Route path="/tabtest" element={<TabsTest/>} exact/>
           <Route path="*" element={<div><NavBar/><h1>404 PAGE NOT FOUND</h1></div>} exact/>
         </Routes>
+        
       </AppStates.Provider>
     </div>
   );
