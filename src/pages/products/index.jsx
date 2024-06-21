@@ -30,7 +30,7 @@ export default function Products() {
         const getAllProducts = async () => {
             try {
                 setLoading(true)
-                // console.log(products)
+                console.log(products)
                 const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/products`)
                 // console.log(response)
                 setProducts(response.data)

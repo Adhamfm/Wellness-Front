@@ -54,7 +54,7 @@ export default function Wishlist(props) {
     useEffect(() => {
         const getWishlist = () => {
             setWishlist(props.data)
-            // console.log(props.wishlistList)
+            console.log(props.wishlistList)
             setIsWishlist(!checkIfMealInWishlist(props.wishlistList, props.id))
         };
         getWishlist()

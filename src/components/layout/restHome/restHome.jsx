@@ -20,7 +20,7 @@ export default function RestHome() {
                 </div>
             </section>
 
-            {/* <section className="product-section">
+            <section className="product-section">
                 <div className="top main-padding">
                     <h1>Top dishes</h1>
                     <div className="view_all_btn">
@@ -74,9 +74,9 @@ export default function RestHome() {
                     </div>
 
                 </div>
-            </section> */}
+            </section>
 
-            {/* <section id="info" className="main-padding">
+            <section id="info" className="main-padding">
                 <div className="info-collection">
                     <div className="info-col">
                         <div>
@@ -105,8 +105,8 @@ export default function RestHome() {
                     <div className="view_all_btn">
                         <a href=""><button>View all</button></a>
                 </div>
-            </div> */}
-            {/* <div className="pro-collection ">
+            </div>
+            <div className="pro-collection ">
                 <div className="product-cart">
                     <img src={mealTestImg} alt="product image" />
                     <span>Chef</span>
@@ -145,7 +145,7 @@ export default function RestHome() {
 
                 </div>
             </div>
-        </section > */}
+        </section >
             <section id="newsletter" className="">
                 <div className="container main-padding">
 

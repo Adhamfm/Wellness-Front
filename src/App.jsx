@@ -21,16 +21,13 @@ import ProfileCustomer from './pages/profileCustomer';
 import Feedback from './pages/feedback';
 import ProfileView from './pages/profileView';
 import EditMeal from './pages/editMeal';
-import { createContext, useState } from 'react';
-import Check from './pages/check';
-import { AppStates } from './pages/check/index';
-
 
 
 function App() {
-  const [cartElements, setCartElements] = useState([]);
+
   return (
     <div>
+
       <AppStates.Provider value={{ cartElements, setCartElements }}>
         <Routes>
           <Route path="/" element={<Home/>} exact/>
@@ -57,6 +54,7 @@ function App() {
         </Routes>
         
       </AppStates.Provider>
+
     </div>
   );
 }

@@ -75,7 +75,7 @@ export default function Home() {
     <div>
       <NavBar />
       <div className="App">
-      {/* {modal && (
+      {modal && (
         <button
           className="btn btn-red close-btn"
           onClick={() => setModal((value) => !value)}
@@ -114,7 +114,7 @@ export default function Home() {
             </button>
           </form>
         )}
-      </div> */}
+      </div>
     </div>
 
       <RestHome />

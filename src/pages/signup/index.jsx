@@ -89,7 +89,7 @@ export default function Signup() {
       setLoading(false);
       setSuccess(data.message);
       setTimeout(()=>{
-        navigate("/logincustomer"); //Redirect to login
+        navigate("/login"); //Redirect to login
       }, 2000);
       console.log("SUCCESS");
     } catch (error) {
@@ -248,7 +248,7 @@ export default function Signup() {
                   </Grid>
                 </Grid>
 
-                <Button variant="contained" type="submit" fullWidth sx={{ mt: 3, mb: 2 }}>Sign up</Button>
+                <Button variant="contained" type="submit" fullWidth sx={{ mt: 3, mb: 2 }}>TEST ME</Button>
                 {error && <div className="error_text"><Alert severity="error">{error}</Alert></div>}
                 {success && <div className="success_text"><Alert severity="success">Login Successful</Alert></div>}
                 {loading && <div className="loading_text"> <CircularProgress color="inherit" /></div>}

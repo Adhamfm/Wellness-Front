@@ -129,7 +129,7 @@ export default function LoginCustomer() {
 
                 </Grid>
 
-                <Button variant="contained" type="submit" fullWidth sx={{ mt: 3, mb: 2 }}>Login</Button>
+                <Button variant="contained" type="submit" fullWidth sx={{ mt: 3, mb: 2 }}>TEST ME</Button>
                 {error && <div className="error_text"><Alert severity="error">{error}</Alert></div>/*TODO: CHANGE error TO UI/UX STYLE */} 
                 {success && <div className="success_text"><Alert severity="success">Login Successful</Alert></div>}
                 {loading && <div className="loading_text"><Grid item xs={12}> <CircularProgress color="inherit" /></Grid></div>}

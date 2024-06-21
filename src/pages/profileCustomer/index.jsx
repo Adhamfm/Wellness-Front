@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import NavBar from '../../components/layout/NavBar/NavBar'
 import axios from 'axios';
 import { CircularProgress, Grid } from '@mui/material';
+import "./style.css";
 
 export default function ProfileCustomer() {
     const [mealsLoading, setMealsLoading] = useState(false)
