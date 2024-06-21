@@ -12,6 +12,7 @@ import StarRating from "../../components/StarRating/StarRating";
 
 export default function MealPage() {
     const userLocal = JSON.parse(localStorage.getItem('user'))
+
     const {
         meal,
         mealId,
@@ -20,6 +21,8 @@ export default function MealPage() {
         loading,
     } = useMealPage();
 
+    const isOwner = userLocal.userId === meal.seller
+    // console.log(userLocal.userId === meal.seller);
     const [rate, setRate] = useState(Math.floor(meal.rate));
     const handleRateChange = async (newValue) => {
         setRate(newValue);
@@ -77,40 +80,55 @@ export default function MealPage() {
         }
     }
 
-    async function addReviews (event) {
+    const handleDeleteMeal = async () => {
+        //console.log(props.data);
+        console.log(mealId);
+        try {
+            const userLocal = JSON.parse(localStorage.getItem('user'))
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/customer/${userLocal.userId}/cart`, 
+                { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
+            handleOpen()
+            console.log(response);
+            console.log("added");
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async function addReviews(event) {
         event.preventDefault();
         const form = new FormData(event.target);
         let review;
         for (let entry of form.entries()) {
-                review = entry[1];
+            review = entry[1];
         }
         console.log(review);
 
         const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/meals/${meal.id}/reviews`, {
-            content:review
+            content: review
         }, { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
         console.log(response);
         event.target.reset();
     }
 
-    async function editReviews (reviewID) {
+    async function editReviews(reviewID) {
 
         const form = new FormData(event.target);
         let review;
         for (let entry of form.entries()) {
-                review = entry[1];
+            review = entry[1];
         }
         console.log(review);
 
         const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/meals/${meal.id}/reviews/${reviewID}`, {
-            content:review
+            content: review
         }, { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
         console.log(response);
     }
 
-    async function deleteReviews (reviewID) {
+    async function deleteReviews(reviewID) {
         const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/meals/${meal.id}/reviews/${reviewID}`,
-        { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
+            { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
         console.log(response);
 
     }
@@ -171,29 +189,38 @@ export default function MealPage() {
                                 {/* <h2>TITLE: {meal.title}</h2> */}
                                 <h2>DESCRIPTION:</h2>
                                 <p className="des" style={{ fontSize: 24 }}> {meal.description}</p>
-                                <h3 className="price">PRICE: EGP {meal.price}</h3>
+                                <h3 className="price">PRICE: EGP {meal.price} | Rating: {meal.rate}⭐</h3>
                                 <br />
                                 <div className="list-features">
                                     <Button className="" style={{ margin: 5 }} variant="contained" onClick={handleClick} >Add to Cart</Button>
                                     <Link to={`/profile/${meal.seller}`}><Button className="" style={{ margin: 5 }} variant="contained">Cooker</Button></Link>
-                                    <Link to={`/meals/edit/${meal.id}`}><Button className="" style={{ margin: 5 }} color="secondary" variant="contained">Edit</Button></Link>
+                                    {isOwner ? (
+                                        <>
+                                            <Link to={`/meals/edit/${meal.id}`}><Button className="" style={{ margin: 5 }} color="secondary" variant="contained">Edit</Button></Link>
+                                        </>
+                                    ) : (
+                                        <>
+                                        </>
+                                    )}
                                 </div>
                                 <br /><br />
-                                <StarRating value={rate} onValueChange={handleRateChange}/>
+                                
                             </div>
                         </div>
                         <div className="comment-section">
-                            <form onSubmit={handleSubmit} target="">
-                                <input 
-                                    name="review" 
-                                    style={{ 
-                                        height: '50px', 
-                                        width: '100%', 
-                                        padding: '10px', 
-                                        borderRadius: '5px', 
-                                        border: '1px solid #ccc', 
-                                        boxShadow: '0 2px 4px rgba(0,0,0,0.1)', 
-                                        fontSize: '16px' 
+                        <StarRating value={rate} onValueChange={handleRateChange} />
+
+                            <form style={{marginTop:50}} onSubmit={handleSubmit} target="">
+                                <input
+                                    name="review"
+                                    style={{
+                                        height: '50px',
+                                        width: '100%',
+                                        padding: '10px',
+                                        borderRadius: '5px',
+                                        border: '1px solid #ccc',
+                                        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                                        fontSize: '16px'
                                     }}
                                     placeholder="Write your review..."
                                 />
@@ -203,43 +230,43 @@ export default function MealPage() {
 
                                 const reviewDate = new Date(data.reviewDate).toLocaleDateString(); // Format the date
 
-                                return ( 
-                                <div key={index} style={{ marginTop: '10px', padding: '10px', border: '1px solid #eee', borderRadius: '5px', backgroundColor: '#fafafa' }}>
-                                    <p style={{ margin: '5px 0', fontWeight: 'bold' }}>{data.customerName}</p>
-                                    <p style={{ margin: '5px 0', fontSize: '12px', color: '#999' }}>{reviewDate}</p>
-                                    <p style={{ margin: '5px 0' }}>{data.content}</p>
-                                    {data.customer == userLocal.userId && (
-                                        <div>
-                                            <button 
-                                                onClick={() => editReviews(data._id)} 
-                                                style={{ 
-                                                    marginRight: '10px', 
-                                                    padding: '5px 10px', 
-                                                    borderRadius: '5px', 
-                                                    border: 'none', 
-                                                    backgroundColor: '#007BFF', 
-                                                    color: 'white', 
-                                                    cursor: 'pointer' 
-                                                }}
-                                            >
-                                                Edit
-                                            </button>
-                                            <button 
-                                                onClick={() => deleteReviews(data._id)} 
-                                                style={{ 
-                                                    padding: '5px 10px', 
-                                                    borderRadius: '5px', 
-                                                    border: 'none', 
-                                                    backgroundColor: '#FF0000', 
-                                                    color: 'white', 
-                                                    cursor: 'pointer' 
-                                                }}
-                                            >
-                                                Delete
-                                            </button>
-                                        </div>
-                                    )}
-                                </div>
+                                return (
+                                    <div key={index} style={{ marginTop: '10px', padding: '10px', border: '1px solid #eee', borderRadius: '5px', backgroundColor: '#fafafa' }}>
+                                        <p style={{ margin: '5px 0', fontWeight: 'bold' }}>{data.customerName}</p>
+                                        <p style={{ margin: '5px 0', fontSize: '12px', color: '#999' }}>{reviewDate}</p>
+                                        <p style={{ margin: '5px 0' }}>{data.content}</p>
+                                        {data.customer == userLocal.userId && (
+                                            <div>
+                                                <button
+                                                    onClick={() => editReviews(data._id)}
+                                                    style={{
+                                                        marginRight: '10px',
+                                                        padding: '5px 10px',
+                                                        borderRadius: '5px',
+                                                        border: 'none',
+                                                        backgroundColor: '#007BFF',
+                                                        color: 'white',
+                                                        cursor: 'pointer'
+                                                    }}
+                                                >
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    onClick={() => deleteReviews(data._id)}
+                                                    style={{
+                                                        padding: '5px 10px',
+                                                        borderRadius: '5px',
+                                                        border: 'none',
+                                                        backgroundColor: '#FF0000',
+                                                        color: 'white',
+                                                        cursor: 'pointer'
+                                                    }}
+                                                >
+                                                    Delete
+                                                </button>
+                                            </div>
+                                        )}
+                                    </div>
                                 )
                             })}
                             {/* {console.log(meal)} */}
@@ -247,10 +274,10 @@ export default function MealPage() {
                     </div>
                 ) : (
                     <p className="des">Meal not found</p>
-                    
+
                 )}
             </section>
-            
+
 
         </>
     );
