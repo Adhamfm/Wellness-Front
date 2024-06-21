@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import NavBar from '../../components/layout/NavBar/NavBar'
 import axios from 'axios';
 import { CircularProgress, Grid } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
 import "./style.css";
 
 export default function ProfileCustomer() {
@@ -51,7 +50,6 @@ export default function ProfileCustomer() {
           <div className="profile_banner">
             <h1>welcome, {customerData.name}</h1>
             {/* <Button onClick={getSellerData} variant="contained"> GET DATA </Button> */}
-            <Avatar alt={customerData.name} src={customerData.name} />
             {customerLoading && <div className="loading_text"><Grid item xs={12}> <CircularProgress color="inherit" /></Grid></div>}
             <h2>Email:{customerData.email}</h2>
             <h2>Phone Number:{customerData.phone.number}</h2>

@@ -8,7 +8,7 @@ import ProductSection from '../../components/profile/productSection'
 import "./style.css"
 import Footer from '../../components/layout/Footer/Footer'
 import { Link } from 'react-router-dom'
-import Avatar from '@mui/material/Avatar';
+
 
 // const test = {
 // 	message: "success",
@@ -124,7 +124,6 @@ export default function profile() {
           {error && <div className="error_text"><Alert severity="error">{error}</Alert></div>/*TODO: CHANGE error TO UI/UX STYLE */}
           <div className="profile_banner">
             <h1>welcome, {sellerData.name}</h1>
-            <Avatar alt={sellerData.name} src={sellerData.name} />
             {/* <Button onClick={getSellerData} variant="contained"> GET DATA </Button> */}
             {sellerLoading && <div className="loading_text"><Grid item xs={12}> <CircularProgress color="inherit" /></Grid></div>}
             <h2>Email:{sellerData.email}</h2>
