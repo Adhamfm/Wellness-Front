@@ -26,12 +26,11 @@ import AddValidationForm from './editMealValidation';
 
 
 const mealInfo = {
-  id: "",
+  id:"",
   seller: "",
-  images: [],
+  images:[],
   price: 0,
   tags: [],
-  rate:0,
   category: "",
   description: "",
   title: ""
@@ -71,7 +70,7 @@ export default function EditMeal() {
     }
 
     mealGet();
-  }, []);
+}, []);
 
   const mealSubmit = async () => {
     try {
@@ -79,22 +78,17 @@ export default function EditMeal() {
       console.log("Meal Info at Edit: ")
       setLoading(true);
       console.log(mealInfo);
-      const test = {
-        seller: userLocal.userId,
-        price: mealInfo.price,
-        category: mealInfo.category,
-        description: mealInfo.description,
-        title: mealInfo.title,
-        rate: mealInfo.rate,
-        images: mealInfo.images
-      }
-      console.log("testingng ..v");
-      console.log(test)
       const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/meals/${mealInfo.id}`,
-        test
-        ,
+        {
+          seller: userLocal.userId,
+          price: mealInfo.price,
+          category: mealInfo.category,
+          description: mealInfo.description,
+          title: mealInfo.title,
+          tags: [mealInfo.tags],
+          images: [mealInfo.images]
+        },
         { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
-
       console.log(response);
       setError("");
       setLoading(false);
@@ -279,18 +273,6 @@ export default function EditMeal() {
                         fullWidth
                         error={Boolean(errors.tags) && Boolean(touched.tags)}
                         helperText={Boolean(touched.tags) && errors.tags}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <Field
-                        name="rate"
-                        type="number"
-                        as={TextField}
-                        variant="outlined"
-                        color="primary"
-                        label="Rate"
-                        fullWidth
-
                       />
                     </Grid>
 

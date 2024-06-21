@@ -52,25 +52,22 @@ function NavBar() {
 
                 <ul>
                     <li><Link to="/" className="active">Home</Link></li>
-                    {/* <li><Link to="/blog.html">Blog</Link></li> */}
+                    <li><Link to="/blog.html">Blog</Link></li>
                     <li><Link to="/meals">Meals</Link></li>
                     <li><Link to="/products">Products</Link></li>
-
+                    
                     {/* <li><Link to="/profile">Profile</Link></li>
                         <li><Link to="/Signup">Signup</Link></li>
                         <li><Link to="/logincustomer">Login Customer</Link></li> */}
                     {isLoggedIn ? (
                         <>
                             {isCustomer ? (
-                                <>
-                                    <li><Link to="/profilecus">Profile</Link></li>
-                                    <li><Link to="/wishlist">Wishlist</Link></li>
-                                    <li><Link to="/cart">Cart</Link></li>
-                                </>
-                            ) : (
-                                <>
-                                    <li><Link to="/profile">Profile</Link></li>
-                                </>
+                            <><li><Link to="/profilecus">Profile</Link></li>
+                            <li><Link to="/wishlist">Wishlist</Link></li>
+                            <li><Link to="/cart">Cart</Link></li>
+                            </>
+                            ) : (<><li><Link to="/profile">Profile</Link></li>
+                            <li><Link to="/cart">Cart</Link></li></>
                             )}
                         </>
                     ) : (
@@ -82,10 +79,10 @@ function NavBar() {
                 </ul>
             </nav>
             <div className="header-list-icon">
-
+               
                 <li> {isLoggedIn ? (<Button onClick={handleLogout}> LogOut </Button>) : (<></>)}</li>
-
-
+                
+               
             </div>
         </div>
     );

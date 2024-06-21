@@ -80,16 +80,11 @@ export default function MealCard(props) {
     try {
       const userLocal = JSON.parse(localStorage.getItem('user'))
       console.log(userLocal);
-      const test = { itemId: props.data.id }
-      const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/customer/${userLocal.userId}/cart`,{
-
-        data: test,
-        headers: { "authorization": `Bearer ${userLocal.accessToken}` } 
-      }
+      const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/customer/${userLocal.userId}/cart`,
+        { itemId: props.data.id }, { headers: { "authorization": `Bearer ${userLocal.accessToken}` } }
       );
       console.log(response)
     } catch (error) {
-      console.log(props.data.id);
       console.log(error)
     }
   }
@@ -103,7 +98,7 @@ export default function MealCard(props) {
       <h4>{props.data.title}</h4>
       <div className="stars">
         <i className="fa-solid fa-star"></i>
-        <span><span className="specific">{props.data.rate} </span></span>
+        <span><span className="specific">{props.data.rate} </span>(630)</span>
       </div>
       <h4 className="price">EGP {props.data.price}</h4>
           </Link>

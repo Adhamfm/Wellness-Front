@@ -124,7 +124,7 @@ export default function ProductCard(props) {
         </Snackbar>
         <div className="stars">
           <i className="fa-solid fa-star"></i>
-          <span><span className="specific">{props.data.finalrate} </span></span>
+          <span><span className="specific">{props.data.finalrate} </span>(630)</span>
         </div>
         <h4 className="price">EGP {props.data.price}</h4>
       </Link>
