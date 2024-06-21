@@ -1,252 +1,105 @@
-/* .checkoutContainer {
+.checkoutContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+h1.checkout{
+    text-align: center;
+    margin-top: 2%;
+}
+
+.formWrapper, .productsWrapper {
+    width: 100%;
+    max-width: 500px;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    margin-top: 5%;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;  
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.productItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.productItem img.icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
+
+.productDetails {
+    flex-grow: 1;
+}
+
+.totalAmount {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.checkoutContainer {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 20px;
-}
-
-.formWrapper, .productsWrapper {
-    flex: 1;
-    min-width: 300px;
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.formWrapper form {
-    display: flex;
-    flex-direction: column;
-}
-
-.formWrapper input {
-    margin-bottom: 10px;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.formWrapper .error {
-    color: red;
-    margin-bottom: 10px;
-}
-
-.btn {
-    background-color: #4CAF50;
-    background-color: #4CAF50;  
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background-color: #0056b3;
-    background-color: #45a049;
-}
-
-.productsWrapper {
-    display: flex;
-    flex-direction: column;
-}
-
-.productItem {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.productItem img {
-    max-width: 50px;
-    margin-right: 10px;
-}
-
-.productDetails h3 {
-    margin: 0;
-}
-
-.totalAmount {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-}
-
-@media (max-width: 768px) {
-    .checkoutContainer {
-        flex-direction: column;
-    }
-
-    .formWrapper, .productsWrapper {
-        margin: 10px 0;
-    }
-} */
-
-/*
-.checkoutContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    align-items: flex-start;
     padding: 20px;
     box-sizing: border-box;
+    gap: 20px;
 }
 
 .formWrapper, .productsWrapper {
-    width: 100%;
-    max-width: 500px;
     background: #f9f9f9;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+    flex: 1 1 300px;
 }
 
-h1 {
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-size: 24px;
-    text-align: center;
+@media (max-width: 860px) {
+    
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
 
-.btn {
-    width: 100%;
-    padding: 10px;
-    background-color: #007BFF;
-    border: none;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.btn:hover {
-    background-color: #45a049;
-}
-
-.error {
-    color: red;
-    font-size: 14px;
-    margin-bottom: 20px;
-}
-
-.productItem {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.productItem img.icon {
-    width: 50px;
-    height: 50px;
-    margin-right: 20px;
-}
-
-.productDetails {
-    flex-grow: 1;
-}
-
-.totalAmount {
-    display: flex;
-    justify-content: space-between;
-    font-weight: bold;
-    margin-top: 20px;
-} */
-
-.checkoutContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-.formWrapper, .productsWrapper {
-    width: 100%;
-    max-width: 500px;
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-}
-
-/* h1 {
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-size: 24px;
-    text-align: center;
-} */
-
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.btn {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;  
-    border: none;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.btn:hover {
-    background-color: #45a049;
-}
-
-.error {
-    color: red;
-    font-size: 14px;
-    margin-bottom: 20px;
-}
-
-.productItem {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.productItem img.icon {
-    width: 50px;
-    height: 50px;
-    margin-right: 20px;
-}
-
-.productDetails {
-    flex-grow: 1;
-}
-
-.totalAmount {
-    display: flex;
-    justify-content: space-between;
-    font-weight: bold;
-    margin-top: 20px;
-}
