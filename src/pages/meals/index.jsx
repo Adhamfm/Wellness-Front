@@ -62,7 +62,6 @@ export default function Meals() {
                 justifyContent="center">
 
                 {loading && <div className="loading_text"><Grid item xs={12}> <CircularProgress color="inherit" /></Grid></div>}
-                
 
 
                 {allMeals.map((meal) =>
