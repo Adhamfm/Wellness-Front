@@ -20,8 +20,9 @@ import { Field, Formik, withFormik, Form } from 'formik';
 import SignUpValidationForm from '../../components/validation/SignUpValidationScema';
 import * as yup from "yup";
 import axios from 'axios';
-import { Alert, CircularProgress } from '@mui/material';
+import { Alert, CircularProgress, MenuItem } from '@mui/material';
 import NavBar from '../../components/layout/NavBar/NavBar';
+import SignUpValidationFormSeller from '../../components/validation/SignUpValidationScemaSeller';
 
 // function Copyright(props) { TODO:CHECK TYPOGRAPHY
 //   return (
@@ -43,6 +44,7 @@ const signupInfos = {
   name: "",
   email: "",
   password: "",
+  ssn: "",
   address: "",
   phone: {
     countryCode: "",
@@ -73,10 +75,12 @@ export default function Signup() {
   const signupSubmit = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/customer/register`,
+      console.log(signupInfos);
+      const { data } = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/seller/register`,
         {
           name: signupInfos.name,
           email: signupInfos.email,
+          SSN: signupInfos.ssn,
           password: signupInfos.password,
           address: signupInfos.address,
           phone: {
@@ -137,7 +141,7 @@ export default function Signup() {
               //formikHelpers.resetForm();
               signupSubmit();
             }}
-            validationSchema={yup.object().shape(SignUpValidationForm)}
+            validationSchema={yup.object().shape(SignUpValidationFormSeller)}
           >
             {({ errors, isValid, touched, dirty }) => (
               <Form>
@@ -179,6 +183,19 @@ export default function Signup() {
                       fullWidth
                       error={Boolean(errors.email) && Boolean(touched.email)}
                       helperText={Boolean(touched.email) && errors.email}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Field
+                      name="ssn"
+                      type="string"
+                      as={TextField}
+                      variant="outlined"
+                      color="primary"
+                      label="SSN"
+                      fullWidth
+                      error={Boolean(errors.ssn) && Boolean(touched.ssn)}
+                      helperText={Boolean(touched.ssn) && errors.ssn}
                     />
                   </Grid>
                   <Grid item xs={12} sm={4}>
@@ -246,11 +263,31 @@ export default function Signup() {
                       helperText={Boolean(touched.confirmPassword) && errors.confirmPassword}
                     />
                   </Grid>
+                  <Grid item xs={12}>
+                      <Field
+                        name="category"
+                        type="string"
+                        as={TextField}
+                        variant="outlined"
+                        color="primary"
+                        label="Category"
+                        select
+                        fullWidth
+                        error={Boolean(errors.tags) && Boolean(touched.tags)}
+                        helperText={Boolean(touched.tags) && errors.tags}
+                      >
+                        <MenuItem value={"homeCook"}>Home Cook</MenuItem>
+                        <MenuItem value={"healthyMealShopper"}>Healthy Meal Shopper</MenuItem>
+                        <MenuItem value={"healthyMealPreparer"}>Healthy Meal Preparer</MenuItem>
+                        <MenuItem value={"healthyMealSeller"}>Healthy Meal Seller</MenuItem>
+
+                      </Field>
+                    </Grid>
                 </Grid>
 
                 <Button variant="contained" type="submit" fullWidth sx={{ mt: 3, mb: 2 }}>Sign up</Button>
                 {error && <div className="error_text"><Alert severity="error">{error}</Alert></div>}
-                {success && <div className="success_text"><Alert severity="success">Login Successful</Alert></div>}
+                {success && <div className="success_text"><Alert severity="success">Sign Up Successful</Alert></div>}
                 {loading && <div className="loading_text"> <CircularProgress color="inherit" /></div>}
               </Form>
             )}

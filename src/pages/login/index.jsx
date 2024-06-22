@@ -43,7 +43,6 @@ export default function LoginCustomer() {
       );
       setLoading(false);
       setError("");
-      // console.log(data); 
       setSuccess(data.message); 
       const {message, ...rest} = data;
       setTimeout(()=>{
@@ -58,8 +57,8 @@ export default function LoginCustomer() {
     catch (error) {
       setLoading(false);
       setSuccess("");
-      console.log(error)
-      setError(error.response.data.message);
+      console.log(error.response.data.error)
+      setError(error.response.data.error);
     }
   };
 
@@ -138,7 +137,7 @@ export default function LoginCustomer() {
           </Formik>
           <Grid container justifyContent="flex-end" >
             <Grid item xs={8}>
-              <Link to="/signup" variant="body2">
+              <Link to="/signupcus" variant="body2">
                 Don't have an account? Sign up!
               </Link>
             </Grid>

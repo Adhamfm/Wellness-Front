@@ -112,6 +112,19 @@ export default function EditMeal() {
     }
   };
 
+  const handleDeleteMeal = async (event) => {
+    try {
+      const userLocal = JSON.parse(localStorage.getItem('user'))
+      const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/meals/${mealInfo.id}`
+        ,
+        { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
+        console.log(response);
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const handleChange = (event) => {
     setCat(event.target.value);
     mealInfo["category"] = event.target.value;
@@ -281,7 +294,7 @@ export default function EditMeal() {
                         helperText={Boolean(touched.tags) && errors.tags}
                       />
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                    {/* <Grid item xs={12} sm={6}>
                       <Field
                         name="rate"
                         type="number"
@@ -292,11 +305,12 @@ export default function EditMeal() {
                         fullWidth
 
                       />
-                    </Grid>
+                    </Grid> */}
 
                   </Grid>
 
-                  <Button variant="contained" type="submit" fullWidth sx={{ mt: 3, mb: 2 }}>Edit Meal</Button>
+                  <Button variant="contained" type="submit" fullWidth sx={{ mt: 3 }}>Edit Meal</Button>
+                  <Button variant="contained" fullWidth sx={{ mt: 3  }} color='error' onClick={handleDeleteMeal}>Remove Meal</Button>
                   {error && <div className="error_text"><Alert severity="error">{error}</Alert></div>}
                   {success && <div className="success_text"><Alert severity="success">Meal Edit Successfully</Alert></div>}
                   {loading && <div className="loading_text"> <CircularProgress color="inherit" /></div>}

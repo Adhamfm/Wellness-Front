@@ -189,7 +189,7 @@ export default function MealPage() {
                                 {/* <h2>TITLE: {meal.title}</h2> */}
                                 <h2>DESCRIPTION:</h2>
                                 <p className="des" style={{ fontSize: 24 }}> {meal.description}</p>
-                                <h3 className="price">PRICE: EGP {meal.price} | Rating: {meal.rate}⭐</h3>
+                                <h3 className="price">PRICE: EGP {meal.price} </h3>
                                 <br />
                                 <div className="list-features">
                                     <Button className="" style={{ margin: 5 }} variant="contained" onClick={handleClick} >Add to Cart</Button>

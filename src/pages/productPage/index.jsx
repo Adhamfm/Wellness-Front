@@ -11,6 +11,7 @@ import { useState } from "react";
 import StarRating from "../../components/StarRating/StarRating";
 
 export default function ProductPage() {
+    const userLocal = JSON.parse(localStorage.getItem('user'))
     const {
         product,
         productId,
@@ -18,6 +19,8 @@ export default function ProductPage() {
         handleQuantityChange,
         aimg
     } = useProductPage();
+    const isOwner = userLocal.userId === product.owner
+    console.log(isOwner);
     const [open, setOpen] = useState(false); //for Snackbar
     const [rate, setRate] = useState(Math.floor(product.rate));
     const handleRateChange = async (newValue) => {
@@ -100,6 +103,7 @@ export default function ProductPage() {
                         Added to Cart
                     </Alert>
                 </Snackbar>
+                        
                 <div className="cart-container-list">
                     {/* <!-- Cart Items --> */}
                     <div className="cart-container">
@@ -116,13 +120,20 @@ export default function ProductPage() {
                             <p className="price">PRICE: {product.price}</p>
                             <h2>DESCRIPTION</h2>
                             <p className="des" style={{ fontSize: 24 }}>{product.description}</p>
+                            <StarRating value={rate} onValueChange={handleRateChange}/>
                             <div className="list-features">
                                 <Button className="" style={{ margin: 5 }} variant="contained" onClick={handleClick} >Add to Cart</Button>
                                 <Link to={`/profile/${product.owner}`}><Button className="" style={{ margin: 5 }} variant="contained">Cooker</Button></Link>
-                                <Button className="" style={{ margin: 5 }} variant="contained">More</Button>
+                                {isOwner ? (
+                                        <>
+                                            <Link to={`/products/edit/${product._id}`}><Button className="" style={{ margin: 5 }} color="secondary" variant="contained">Edit</Button></Link>
+                                        </>
+                                    ) : (
+                                        <>
+                                        </>
+                                    )}
                             </div>
                             <br /><br />
-                            <StarRating value={rate} onValueChange={handleRateChange}/>
                         </div>
                     </div>
                 </div>

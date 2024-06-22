@@ -21,7 +21,8 @@ import * as yup from "yup";
 import axios from 'axios';
 import { Alert, CircularProgress, InputLabel, MenuItem, Select } from '@mui/material';
 import NavBar from '../../components/layout/NavBar/NavBar';
-import AddValidationForm from './addMealValidation';
+import AddValidationForm from './addProductValidation';
+import AddProductValidationForm from './addProductValidation';
 
 
 
@@ -35,15 +36,16 @@ const initialValue = {
 const mealInfo = {
   seller: "",
   price: 0,
+  quantity: 0,
   tags: [],
+  images: [],
   category: "",
   description: "",
   title: ""
 }
 
 
-export default function AddMealPage() {
-  const navigate = useNavigate();
+export default function AddProductPage() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
@@ -54,22 +56,24 @@ export default function AddMealPage() {
       const userLocal = JSON.parse(localStorage.getItem('user'))
       console.log("asudfhasld")
       setLoading(true);
-      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/meals`,
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/products`,
         {
           seller: userLocal.userId,
           price: mealInfo.price,
           category: mealInfo.category,
           description: mealInfo.description,
           title: mealInfo.title,
-          tags: [mealInfo.tags],
+          quantity: mealInfo.quantity,
+          tags: mealInfo.tags,
+          images: mealInfo.images,
         },
         { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
       setError("");
       setLoading(false);
       setSuccess(response);
-      setTimeout(() => {
-        navigate("/meals"); //Redirect to login
-      }, 2000);
+      // setTimeout(() => {
+      //   navigate("/login"); //Redirect to login
+      // }, 2000);
       console.log("SUCCESS");
     } catch (error) {
       setLoading(false);
@@ -101,7 +105,7 @@ export default function AddMealPage() {
 
 
           <Typography component="h1" variant="h5">
-            Add Meal
+            Add Product
           </Typography>
           <Box className="MaterialForm" sx={{ mt: 3 }}>
             <Formik
@@ -122,7 +126,7 @@ export default function AddMealPage() {
                 mealSubmit();
                 //formikHelpers.resetForm();
               }}
-              validationSchema={yup.object().shape(AddValidationForm)}
+              validationSchema={yup.object().shape(AddProductValidationForm)}
             >
               {({ errors, isValid, touched, dirty }) => (
                 <Form>
@@ -134,7 +138,7 @@ export default function AddMealPage() {
                         as={TextField}
                         variant="outlined"
                         color="primary"
-                        label="Meal Name"
+                        label="Product Name"
                         fullWidth
                         error={Boolean(errors.title) && Boolean(touched.title)}
                         helperText={Boolean(touched.title) && errors.title}
@@ -171,33 +175,7 @@ export default function AddMealPage() {
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                      {/* <Field
-                        name="category"
-                        type="string"
-                        as={TextField}
-                        select
-                        value={cat}
-                        // labelId="demo-simple-select-helper-label"
-                        // id="demo-simple-select-helper"
-                        fullWidth
-                        label="Category"
-                        error={Boolean(errors.tags) && Boolean(touched.tags)}
-                        helperText={Boolean(touched.tags) && errors.tags}
-                        onChange={handleChange}
-                      >
-                        <MenuItem value={"appetizers"}>Appetizers</MenuItem>
-                        <MenuItem value={"breakfastFoods"}>Breakfast</MenuItem>
-                        <MenuItem value={"desserts"}>Desserts</MenuItem>
-                        <MenuItem value={"drinks"}>Drinks</MenuItem>
-                        <MenuItem value={"mostlyMeat"}>Meat</MenuItem>
-                        <MenuItem value={"salads"}>Salads</MenuItem>
-                        <MenuItem value={"sandwiches"}>Sandwiches</MenuItem>
-                        <MenuItem value={"pasta"}>Pasta</MenuItem>
-                        <MenuItem value={"soups"}>Soups</MenuItem>
-                        <MenuItem value={"mainDishes"}>Main Dishes</MenuItem>
-                        <MenuItem value={"sideDishes"}>Side Dishes</MenuItem>
-                        <MenuItem value={"other"}>Other</MenuItem>
-                      </Field> */}
+
                       <Field
                         name="category"
                         type="string"
@@ -207,8 +185,8 @@ export default function AddMealPage() {
                         label="Category"
                         select
                         fullWidth
-                        error={Boolean(errors.tags) && Boolean(touched.tags)}
-                        helperText={Boolean(touched.tags) && errors.tags}
+                        error={Boolean(errors.category) && Boolean(touched.category)}
+                        helperText={Boolean(touched.category) && errors.category}
                       >
                         <MenuItem value={"appetizers"}>Appetizers</MenuItem>
                         <MenuItem value={"breakfastFoods"}>Breakfast</MenuItem>
@@ -226,23 +204,36 @@ export default function AddMealPage() {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <Field
-                        name="tags"
+                        name="quantity"
+                        type="number"
+                        as={TextField}
+                        variant="outlined"
+                        color="primary"
+                        label="Quantity"
+                        fullWidth
+                        error={Boolean(errors.quantity) && Boolean(touched.quantity)}
+                        helperText={Boolean(touched.quantity) && errors.quantity}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Field
+                        name="images"
                         type="string"
                         as={TextField}
                         variant="outlined"
                         color="primary"
-                        label="Tags"
+                        label="Images (link)"
                         fullWidth
-                        error={Boolean(errors.tags) && Boolean(touched.tags)}
-                        helperText={Boolean(touched.tags) && errors.tags}
+                        error={Boolean(errors.price) && Boolean(touched.price)}
+                        helperText={Boolean(touched.price) && errors.price}
                       />
                     </Grid>
 
                   </Grid>
 
-                  <Button variant="contained" type="submit" fullWidth sx={{ mt: 3, mb: 2 }}>Add Meal</Button>
+                  <Button variant="contained" type="submit" fullWidth sx={{ mt: 3, mb: 2 }}>Add Product</Button>
                   {error && <div className="error_text"><Alert severity="error">{error}</Alert></div>}
-                  {success && <div className="success_text"><Alert severity="success">Meal Added Successfully</Alert></div>}
+                  {success && <div className="success_text"><Alert severity="success">Product Added Successfully</Alert></div>}
                   {loading && <div className="loading_text"> <CircularProgress color="inherit" /></div>}
                 </Form>
               )}

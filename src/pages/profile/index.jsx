@@ -116,6 +116,7 @@ export default function profile() {
           {userLoaded ? (
             <div style={styles.poster}>
               <Link to="/addMealPage"><Button variant='contained' color='success'>Add Meal</Button></Link>
+              <Link to="/addProductPage"><Button variant='contained' color='success' style={{marginLeft:10}}>Add Product</Button></Link>
             </div>
           ) : (
             <>

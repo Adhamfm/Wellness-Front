@@ -23,7 +23,6 @@ export default function Slider({ images = [] }) {
           .then(() => setImagesLoaded(true))
           .catch(() => setImagesLoaded(false));
       };
-
       preloadImages();
     } else {
       setImagesLoaded(false);

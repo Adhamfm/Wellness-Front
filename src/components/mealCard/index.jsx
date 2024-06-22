@@ -81,10 +81,10 @@ export default function MealCard(props) {
       const userLocal = JSON.parse(localStorage.getItem('user'))
       console.log(userLocal);
       const test = { itemId: props.data.id }
-      const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/customer/${userLocal.userId}/cart`,{
+      const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/customer/${userLocal.userId}/cart`, {
 
         data: test,
-        headers: { "authorization": `Bearer ${userLocal.accessToken}` } 
+        headers: { "authorization": `Bearer ${userLocal.accessToken}` }
       }
       );
       console.log(response)
@@ -95,18 +95,18 @@ export default function MealCard(props) {
   }
   return (
     <div className="meal-cart">
-      {/* {console.log(props)} */}
       <Link to={`/meals/${props.data.id}`} style={{ textDecoration: 'none' }} >
         <img src={wellnessImg} alt="Meal image" style={{ display: isLoading ? "block" : "none" }} />
         <img src={props.data.images[0]} alt="" style={{ display: isLoading ? "none" : "block" }} onLoad={onLoad} />
-      <span>MEAL</span>
-      <h4>{props.data.title}</h4>
-      <div className="stars">
-        <i className="fa-solid fa-star"></i>
-        <span><span className="specific">{props.data.rate} </span></span>
-      </div>
-      <h4 className="price">EGP {props.data.price}</h4>
-          </Link>
+        <span>MEAL</span>
+        <h4>{props.data.title}</h4>
+        <div className="stars">
+          <i className="fa-solid fa-star"></i>
+          <span><span className="specific">{props.data.rate} </span></span>
+        </div>
+        <h4 className="price">EGP {props.data.price}</h4>
+      </Link>
+      {/* Code Omitted */}
       <Snackbar
 
         open={open}
@@ -138,7 +138,7 @@ export default function MealCard(props) {
       )}
 
       {location.pathname === '/cart' ? (
-        
+
         <IconButton
           size="small"
           aria-label="close"
@@ -150,7 +150,7 @@ export default function MealCard(props) {
 
       ) : (
         <>
-        <Wishlist id={props.data.id} wishlistList={wishlist} />
+          <Wishlist id={props.data.id} wishlistList={wishlist} />
         </>
       )}
     </div>

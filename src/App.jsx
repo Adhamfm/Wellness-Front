@@ -24,6 +24,8 @@ import EditMeal from './pages/editMeal';
 import { createContext, useState } from 'react';
 import Check from './pages/check';
 import { AppStates } from './pages/check/index';
+import AddProductPage from './pages/addProduct';
+import EditProduct from './pages/editProduct';
 
 
 
@@ -45,9 +47,11 @@ function App() {
           <Route path="/products" element={<Products/>} exact/>
           <Route path="/wishlist" element={<WishlistPage/>} exact/>
           <Route path="/addMealPage" element={<AddMealPage/>} exact/>
+          <Route path="/addProductPage" element={<AddProductPage/>} exact/>
           <Route path="/products/:proid" element={<ProductPage/>} exact/>
           <Route path="/meals" element={<Meals/>} exact/>
           <Route path="/meals/edit/:mealid" element={<EditMeal/>} exact/>
+          <Route path="/products/edit/:productid" element={<EditProduct/>} exact/>
           <Route path="/meals/:mealid" element={<MealPage/>} exact/>
           <Route path="/cart" element={<Cart/>} exact/>
           <Route path="/checkout/*" element={<Check />} />

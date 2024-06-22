@@ -16,19 +16,13 @@ function NavBar() {
         setIsLoggedIn(false);
         navigate("/");
     };
-
     useEffect(() => {
         function checkLoggedIn() {
             const user = localStorage.getItem('user') !== null
             {
-                user ? (
-                    setIsLoggedIn(true)
-                ) : (
-                    setIsLoggedIn(false)
-                )
+                user ? (setIsLoggedIn(true)) : (setIsLoggedIn(false))
             }
         }
-
         checkLoggedIn();
     }, [isLoggedIn]);
 
@@ -49,16 +43,11 @@ function NavBar() {
                 <div className="header-logo">
                     <Link to="/"><img src={wellnessImg} height="50px" alt="Wellness-Logo" /></Link>
                 </div>
-
                 <ul>
                     <li><Link to="/" className="active">Home</Link></li>
                     {/* <li><Link to="/blog.html">Blog</Link></li> */}
                     <li><Link to="/meals">Meals</Link></li>
                     <li><Link to="/products">Products</Link></li>
-
-                    {/* <li><Link to="/profile">Profile</Link></li>
-                        <li><Link to="/Signup">Signup</Link></li>
-                        <li><Link to="/logincustomer">Login Customer</Link></li> */}
                     {isLoggedIn ? (
                         <>
                             {isCustomer ? (
@@ -82,10 +71,7 @@ function NavBar() {
                 </ul>
             </nav>
             <div className="header-list-icon">
-
                 <li> {isLoggedIn ? (<Button onClick={handleLogout}> LogOut </Button>) : (<></>)}</li>
-
-
             </div>
         </div>
     );
