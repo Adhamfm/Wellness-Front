@@ -276,6 +276,7 @@ export default function Signup() {
                         error={Boolean(errors.tags) && Boolean(touched.tags)}
                         helperText={Boolean(touched.tags) && errors.tags}
                       >
+                        <MenuItem value={"chef"}>Chef</MenuItem>
                         <MenuItem value={"homeCook"}>Home Cook</MenuItem>
                         <MenuItem value={"healthyMealShopper"}>Healthy Meal Shopper</MenuItem>
                         <MenuItem value={"healthyMealPreparer"}>Healthy Meal Preparer</MenuItem>
