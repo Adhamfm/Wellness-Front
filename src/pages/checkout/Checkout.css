@@ -8,12 +8,13 @@
     box-sizing: border-box;
 }
 
-h1.checkout{
+h1.checkout {
     text-align: center;
     margin-top: 2%;
 }
 
-.formWrapper, .productsWrapper {
+.formWrapper,
+.productsWrapper {
     width: 100%;
     max-width: 500px;
     background: #f9f9f9;
@@ -24,7 +25,8 @@ h1.checkout{
     margin-top: 5%;
 }
 
-input[type="text"],
+
+/* input[type="text"],
 input[type="email"],
 input[type="password"] {
     width: 100%;
@@ -33,12 +35,12 @@ input[type="password"] {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-}
+} */
 
 .btn {
     width: 100%;
     padding: 10px;
-    background-color: #4CAF50;  
+    background-color: #4CAF50;
     border: none;
     color: white;
     border-radius: 4px;
@@ -89,7 +91,8 @@ input[type="password"] {
     gap: 20px;
 }
 
-.formWrapper, .productsWrapper {
+.formWrapper,
+.productsWrapper {
     background: #f9f9f9;
     padding: 20px;
     border-radius: 8px;
@@ -98,8 +101,4 @@ input[type="password"] {
     flex: 1 1 300px;
 }
 
-@media (max-width: 860px) {
-    
-}
-
-
+@media (max-width: 860px) {}
