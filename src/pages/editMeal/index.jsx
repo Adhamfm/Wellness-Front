@@ -119,6 +119,9 @@ export default function EditMeal() {
         ,
         { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
         console.log(response);
+        setTimeout(() => {
+          navigate(`/meals/`); //Redirect to login
+        }, 2000);
 
     } catch (error) {
       console.log(error);
