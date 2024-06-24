@@ -10,6 +10,7 @@ import { Alert, IconButton, Rating, Snackbar, SnackbarContent, Stack } from "@mu
 import CloseIcon from '@mui/icons-material/Close';
 import StarRating from "../../components/StarRating/StarRating";
 
+let reviewFlag = false;
 export default function MealPage() {
     const userLocal = JSON.parse(localStorage.getItem('user'))
 
@@ -21,7 +22,14 @@ export default function MealPage() {
         loading,
     } = useMealPage();
 
-    const isOwner = userLocal.userId === meal.seller
+    let isOwner = false;
+    if (userLocal !== null) {
+        isOwner = userLocal.userId === meal.seller;
+    }
+    if (userLocal !== null) {
+        data.customer == userLocal.userId;
+    }
+    
     // console.log(userLocal.userId === meal.seller);
     const [rate, setRate] = useState(Math.floor(meal.rate));
     const handleRateChange = async (newValue) => {
@@ -85,7 +93,7 @@ export default function MealPage() {
         console.log(mealId);
         try {
             const userLocal = JSON.parse(localStorage.getItem('user'))
-            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/customer/${userLocal.userId}/cart`, 
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/customer/${userLocal.userId}/cart`,
                 { headers: { "authorization": `Bearer ${userLocal.accessToken}` } });
             handleOpen()
             console.log(response);
@@ -204,13 +212,13 @@ export default function MealPage() {
                                     )}
                                 </div>
                                 <br /><br />
-                                
+
                             </div>
                         </div>
                         <div className="comment-section">
-                        <StarRating value={rate} onValueChange={handleRateChange} />
+                            <StarRating value={rate} onValueChange={handleRateChange} />
 
-                            <form style={{marginTop:50}} onSubmit={handleSubmit} target="">
+                            <form style={{ marginTop: 50 }} onSubmit={handleSubmit} target="">
                                 <input
                                     name="review"
                                     style={{
@@ -235,7 +243,7 @@ export default function MealPage() {
                                         <p style={{ margin: '5px 0', fontWeight: 'bold' }}>{data.customerName}</p>
                                         <p style={{ margin: '5px 0', fontSize: '12px', color: '#999' }}>{reviewDate}</p>
                                         <p style={{ margin: '5px 0' }}>{data.content}</p>
-                                        {data.customer == userLocal.userId && (
+                                        {reviewFlag    && (
                                             <div>
                                                 <button
                                                     onClick={() => editReviews(data._id)}
