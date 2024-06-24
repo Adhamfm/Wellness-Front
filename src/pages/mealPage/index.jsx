@@ -26,9 +26,7 @@ export default function MealPage() {
     if (userLocal !== null) {
         isOwner = userLocal.userId === meal.seller;
     }
-    if (userLocal !== null) {
-        data.customer == userLocal.userId;
-    }
+
     
     // console.log(userLocal.userId === meal.seller);
     const [rate, setRate] = useState(Math.floor(meal.rate));
@@ -243,7 +241,7 @@ export default function MealPage() {
                                         <p style={{ margin: '5px 0', fontWeight: 'bold' }}>{data.customerName}</p>
                                         <p style={{ margin: '5px 0', fontSize: '12px', color: '#999' }}>{reviewDate}</p>
                                         <p style={{ margin: '5px 0' }}>{data.content}</p>
-                                        {reviewFlag    && (
+                                        {userLocal &&data.customer == userLocal.userId && (
                                             <div>
                                                 <button
                                                     onClick={() => editReviews(data._id)}

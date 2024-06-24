@@ -8,6 +8,7 @@ import { Alert, IconButton, Snackbar } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
 export default function MealCard(props) {
+  const [isCustomer, setIsCustomer] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [open, setOpen] = useState(false);
   useEffect(() => {
@@ -24,6 +25,16 @@ export default function MealCard(props) {
 
     checkLoggedIn();
   }, [isLoggedIn]);
+  useEffect(() => {
+    function checkCustomer() {
+        const userType = localStorage.getItem('userType')
+        {
+            setIsCustomer((userType === 'customer') ? true : false);
+        }
+    }
+
+    checkCustomer();
+}, [isLoggedIn]);
   const wishlist = props.wishlistList?.whishlist ?? [];
   const data = useRef();
 
@@ -129,6 +140,17 @@ export default function MealCard(props) {
 
       {isLoggedIn ? (
         <>
+          {isCustomer ? (
+            <>
+
+              <i className="fa-solid fa-cart-shopping buy-icon" onClick={handleClick}></i>
+            </>
+          ) : (
+            <>
+              <Link to="/logincustomer"> <i className="fa-solid fa-cart-shopping buy-icon" onClick={handleClick}></i></Link>
+            </>
+          )}
+
           <i className="fa-solid fa-cart-shopping buy-icon" onClick={handleClick}></i>
         </>
       ) : (
