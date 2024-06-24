@@ -1,8 +1,8 @@
 .checkoutContainer {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    /* align-items: flex-end; */
+    /* justify-content: space-between; */
     min-height: 100vh;
     padding: 20px;
     box-sizing: border-box;
@@ -22,7 +22,7 @@ h1.checkout {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
-    margin-top: 5%;
+    /* margin-top: 5%; */
 }
 
 
@@ -36,6 +36,15 @@ input[type="password"] {
     border-radius: 4px;
     box-sizing: border-box;
 } */
+
+.in-put {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
 
 .btn {
     width: 100%;
@@ -85,10 +94,10 @@ input[type="password"] {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     padding: 20px;
     box-sizing: border-box;
-    gap: 20px;
+    gap: 50px;
 }
 
 .formWrapper,
@@ -99,6 +108,5 @@ input[type="password"] {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
     flex: 1 1 300px;
+    margin-left: 5%;
 }
-
-@media (max-width: 860px) {}

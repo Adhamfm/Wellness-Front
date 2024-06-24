@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { AppStates } from '../check/index';
 import './Checkout.css'; 
 import NavBar from "../../components/layout/NavBar/NavBar";
+import { TextField } from '@mui/material';
 
 function Checkout() {
     const [city, setCity] = useState("");
@@ -82,21 +83,21 @@ function Checkout() {
                 <form onSubmit={sendCheckout}>
                     <h1>Delivery info</h1>
 
-                    <input type="text" value={city} 
+                    <input className="in-put" type="text" value={city} 
                     placeholder='City'
                     onChange={(e) => setCity(e.target.value)}
                     onBlur={handleCityError}
                     />
                     {cityError && <p className="error">*{cityError}</p>}
 
-                    <input type="email" value={email} 
+                    <input className="in-put" type="email" value={email} 
                     placeholder='Email'
                     onChange={(e) => setEmail(e.target.value)}
                     onBlur={handleEmailError}
                     />
                     {emailError && <p className="error">*{emailError}</p>}
 
-                    <input type="text" value={phone} 
+                    <input className="in-put" type="text" value={phone} 
                     placeholder='Phone number'
                     onChange={(e) => setPhone(e.target.value)}
                     onBlur={handlePhoneError}
@@ -105,15 +106,14 @@ function Checkout() {
                     
                     <h1>Payment info</h1>
                     
-                    <input type="text" value={cardNumber} 
+                    <input className="in-put" type="text" value={cardNumber} 
                     maxLength="19" minLength="13" placeholder='Card number'
                     onChange={(e) => setCardNumber(e.target.value.replace(/\D/g, ''))}
                     onBlur={handleCardNumberError}
                     />
                     {cardNumberError && <p className="error">*{cardNumberError}</p>}
-
-                    <input type="password" value={cardPin} 
-                    maxLength="6" minLength="4" placeholder='Card PIN'
+                    <input className="in-put" type="password" value={cardPin} 
+                    maxLength="6" minLength="4" placeholder='CVV'
                     onChange={(e) => setCardPin(e.target.value.replace(/\D/g, ''))}
                     onBlur={handleCardPinError}
                     />
@@ -147,4 +147,3 @@ function Checkout() {
 }
 
 export default Checkout;
-

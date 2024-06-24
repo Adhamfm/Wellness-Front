@@ -138,7 +138,7 @@ export default function Cart() {
                 <div className="price-cart" style={{ textAlign: "center"}}>
                   <h2 style={{ textAlign: "center" }}>Total Price: EGP {totalPrice} </h2>
                   <br />
-                  <Link to=""><Button variant='contained' color='success'>PURCHASE</Button></Link>
+                  <Link to="/checkout"><Button variant='contained' color='success'>PURCHASE</Button></Link>
                 </div>
 
               </Grid>
