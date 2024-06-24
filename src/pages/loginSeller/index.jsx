@@ -60,7 +60,7 @@ export default function LoginSeller() {
             setSuccess("");
             console.log(error)
             console.log(Object.keys(error))
-            setError(error.response.data.message);
+            setError(error.response.data.error);
         }
     };
 

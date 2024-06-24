@@ -57,7 +57,7 @@ export default function LoginCustomer() {
     catch (error) {
       setLoading(false);
       setSuccess("");
-      console.log(error.response.data.error)
+      console.log(error.response.data)
       setError(error.response.data.error);
     }
   };
