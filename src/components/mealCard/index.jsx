@@ -147,11 +147,9 @@ export default function MealCard(props) {
             </>
           ) : (
             <>
-              <Link to="/logincustomer"> <i className="fa-solid fa-cart-shopping buy-icon" onClick={handleClick}></i></Link>
             </>
           )}
 
-          <i className="fa-solid fa-cart-shopping buy-icon" onClick={handleClick}></i>
         </>
       ) : (
         <>
