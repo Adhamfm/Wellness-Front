@@ -278,8 +278,8 @@ export default function Signup() {
                       >
                         <MenuItem value={"chef"}>Chef</MenuItem>
                         <MenuItem value={"homeCook"}>Home Cook</MenuItem>
-                        <MenuItem value={"healthyMealShopper"}>Healthy Meal Shopper</MenuItem>
-                        <MenuItem value={"healthyMealPreparer"}>Healthy Meal Preparer</MenuItem>
+                        {/* <MenuItem value={"healthyMealShopper"}>Healthy Meal Shopper</MenuItem>
+                        <MenuItem value={"healthyMealPreparer"}>Healthy Meal Preparer</MenuItem> */}
                         <MenuItem value={"healthyMealSeller"}>Healthy Meal Seller</MenuItem>
 
                       </Field>
